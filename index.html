@@ -21,7 +21,6 @@
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
-        /* Custom scroll */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -37,7 +36,6 @@
             margin: 0 auto;
             padding: 0 24px;
         }
-        /* Header */
         header {
             background: rgba(10, 15, 28, 0.95);
             backdrop-filter: blur(12px);
@@ -116,7 +114,6 @@
             color: #ffcd4a;
             cursor: pointer;
         }
-        /* Hero с движением мыши */
         .hero {
             position: relative;
             min-height: 90vh;
@@ -207,7 +204,6 @@
             aspect-ratio: 16/9;
             border: none;
         }
-        /* Stats */
         .stats {
             background: #0f1422;
             padding: 60px 0;
@@ -233,7 +229,6 @@
             color: #ccd6f0;
             font-weight: 500;
         }
-        /* Sections */
         .section {
             padding: 80px 0;
         }
@@ -516,7 +511,6 @@
             opacity: 1;
             visibility: visible;
         }
-        /* Шторка (выезжающая панель) */
         .curtain {
             position: fixed;
             bottom: -400px;
@@ -632,9 +626,8 @@
 </header>
 
 <main>
-    <!-- Hero с движением мыши и видео -->
     <section id="home" class="hero">
-        <div class="hero-bg" id="heroBg" style="left: 3px; top: 80px; transform: translate(12.7952px, 4.55249px);"></div>
+        <div class="hero-bg" id="heroBg"></div>
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-text">
@@ -653,7 +646,6 @@
         </div>
     </section>
 
-    <!-- Шторка (выезжающая панель) -->
     <div id="curtain" class="curtain">
         <div class="close-curtain" id="closeCurtain">&times;</div>
         <h3><i class="fas fa-info-circle"></i> Уважаемые родители и абитуриенты!</h3>
@@ -692,10 +684,7 @@
     <section id="material" class="section bg-light"><div class="container"><h2 class="section-title">Материально-техническое обеспечение</h2><div class="card"><i class="fas fa-laptop-code"></i><h3>Оснащение</h3><ul><li>12 учебных классов с интерактивными комплексами</li><li>Лаборатории: сетевых технологий, робототехники, программного обеспечения, электронной инженерии (осциллографы, паяльные станции, растровый микроскоп)</li><li>3D-центр (станки, принтеры), центр виртуальной реальности</li><li>Библиотека с компьютерными местами, доступ к электронным ресурсам</li><li>3 спортивных зала, бассейн, открытый стадион</li><li>Комнаты на 2 человека, санузел, душ, интернет</li><li>Пятиразовое питание по норме «Кадетский пак»</li></ul></div></div></section>
     <section id="scholarships" class="section"><div class="container"><h2 class="section-title">Стипендии и меры поддержки</h2><div class="card"><i class="fas fa-money-bill-wave"></i><p>Ежемесячное денежное содержание – 1040 руб., детям-сиротам – 2080 руб. Бесплатный проезд к месту каникул (1 раз в год, сиротам – 2 раза). Бесплатное проживание, питание, обмундирование, учебники, ноутбук.</p></div></div></section>
     <section id="paid" class="section bg-light"><div class="container"><h2 class="section-title">Платные образовательные услуги</h2><div class="card"><i class="fas fa-ban"></i><p>Платные образовательные услуги не предоставляются. Обучение осуществляется за счёт федерального бюджета.</p></div></div></section>
-    <section id="finance" class="section"><div class="container"><h2 class="section-title">Финансово-хозяйственная деятельность</h2><div class="card"><i class="fas fa-chart-pie"></i><p>Финансовое обеспечение – 100% за счёт бюджетных ассигнований федерального бюджета. Договоров об оказании платных услуг нет.</p></div></div></section>
     <section id="vacancies" class="section bg-light"><div class="container"><h2 class="section-title">Вакантные места для приема обучающихся</h2><div class="card"><i class="fas fa-chart-line"></i><p>Штат укомплектован на 98%. На 2026 год: 10 класс – 39 мест, 11 класс – 39 мест.</p></div></div></section>
-    <section id="accessibility" class="section"><div class="container"><h2 class="section-title">Доступная среда</h2><div class="card"><i class="fas fa-wheelchair"></i><p>Принимаются дети с 1 и 2 группой здоровья. Созданы условия для обучения детей с ограниченными возможностями здоровья (пандусы, широкие дверные проёмы, специальное оборудование).</p></div></div></section>
-    <section id="international" class="section bg-light"><div class="container"><h2 class="section-title">Международное сотрудничество</h2><div class="card"><i class="fas fa-globe"></i><p>Международных договоров и аккредитации нет.</p></div></div></section>
     <section id="graduates" class="section"><div class="container"><h2 class="section-title">Выпускники</h2><div class="card"><i class="fas fa-award"></i><p>Выпускники поступают в ведущие военные и гражданские вузы: Военная академия связи, МГТУ им. Баумана, МФТИ, НИУ ВШЭ. Ежегодно средний балл ЕГЭ – 85+, более 45% набирают 240+ баллов по трём предметам.</p></div></div></section>
     <section id="catering" class="section bg-light"><div class="container"><h2 class="section-title">Организация питания</h2><div class="card"><i class="fas fa-utensils"></i><p>Пятиразовое питание по норме №6 (Кадетский пак), «шведский стол» – 3 блюда на выбор. Денежная компенсация на время каникул.</p></div></div></section>
     <section id="safety" class="section"><div class="container"><h2 class="section-title">Безопасность</h2><div class="card"><i class="fas fa-shield-alt"></i><p>Круглосуточная охрана, пропускной режим, видеонаблюдение. Медицинский пункт, договор с поликлиникой. Проводятся тренировки по антитеррористической защищённости и пожарной безопасности.</p></div></div></section>
@@ -723,14 +712,16 @@
             </div>
             <div class="card">
                 <i class="fas fa-star-of-life"></i><h3>Результаты ЕГЭ выпускников</h3>
-                <div class="table-wrapper"><h4>2025 год</h4><table><thead><tr><th>Предмет</th><th>Участников</th><th>%</th><th>Мин. балл</th><th>Макс. балл</th><th>Средний балл</th></tr></thead><tbody><tr><td>Русский язык</td><td>39</td><td>100%</td><td>36</td><td>94</td><td>74,7</td></tr>
+                <div class="table-wrapper"><h4>2025 год</h4></table><thead><tr><th>Предмет</th><th>Участников</th><th>%</th><th>Мин. балл</th><th>Макс. балл</th><th>Средний балл</th></tr></thead><tbody><tr><td>Русский язык</td><td>39</td><td>100%</td><td>36</td><td>94</td><td>74,7</td></tr>
                 <tr><td>Математика (профиль)</td><td>39</td><td>100%</td><td>27</td><td>99</td><td>80,1</td></tr>
                 <tr><td>Физика</td><td>38</td><td>97,4%</td><td>36</td><td>96</td><td>74,5</td></tr>
-                <tr><td>Информатика</td><td>9</td><td>23,1%</td><td>40</td><td>100</td><td>89,8</td></tr></tbody></table><p>✔ Выпускников: 39, аттестат получили 100%. С отличием I степени – 20,5%, II степени – 23,1%. 240+ баллов – 45,2%.</p></div>
-                <div class="table-wrapper"><h4>2024 год</h4><table><thead><tr><th>Предмет</th><th>Участников</th><th>%</th><th>Мин. балл</th><th>Макс. балл</th><th>Средний балл</th></tr></thead><tbody><tr><td>Русский язык</td><td>39</td><td>100%</td><td>36</td><td>97</td><td>81,4</td></tr>
+                <tr><td>Информатика</td><td>9</td><td>23,1%</td><td>40</td><td>100</td><td>89,8</td></tr>
+                </tbody></table><p>✔ Выпускников: 39, аттестат получили 100%. С отличием I степени – 20,5%, II степени – 23,1%. 240+ баллов – 45,2%.</p></div>
+                <div class="table-wrapper"><h4>2024 год</h4></table><thead><tr><th>Предмет</th><th>Участников</th><th>%</th><th>Мин. балл</th><th>Макс. балл</th><th>Средний балл</th></tr></thead><tbody><tr><td>Русский язык</td><td>39</td><td>100%</td><td>36</td><td>97</td><td>81,4</td></tr>
                 <tr><td>Математика (профиль)</td><td>39</td><td>100%</td><td>27</td><td>100</td><td>84,7</td></tr>
                 <tr><td>Физика</td><td>39</td><td>100%</td><td>36</td><td>100</td><td>82,5</td></tr>
-                <tr><td>Информатика</td><td>10</td><td>25,6%</td><td>40</td><td>100</td><td>85,0</td></tr></tbody></table><p>✔ Выпускников: 39, аттестат с отличием I степени – 20,5%, II степени – 18,0%. 240+ баллов – 89,7%.</p></div>
+                <tr><td>Информатика</td><td>10</td><td>25,6%</td><td>40</td><td>100</td><td>85,0</td></tr>
+                </tbody></table><p>✔ Выпускников: 39, аттестат с отличием I степени – 20,5%, II степени – 18,0%. 240+ баллов – 89,7%.</p></div>
             </div>
         </div>
     </section>
@@ -758,7 +749,7 @@
                 <tr><td>11 кл</td><td>13</td><td>12</td><td>10</td></tr>
                 <tr><td rowspan="2">Бег 1000 м (мин,с)</td><td>10 кл</td><td>3.35</td><td>3.45</td><td>4.10</td></tr>
                 <tr><td>11 кл</td><td>3.30</td><td>3.40</td><td>4.05</td></tr>
-                </tbody></table></div>
+                </tbody></table>
                 <p>Оценка уровня физической подготовленности определяется по сумме трёх упражнений.</p>
             </div>
         </div>
@@ -790,7 +781,13 @@
                 <div class="parent-card"><div class="parent-card-header"><i class="fas fa-users"></i> Родительский комитет</div><div class="parent-card-body"><p>Контакт: заместитель по воспитательной работе Воронов Д.А. Приглашаются активные родители для участия в жизни школы.</p></div></div>
                 <div class="parent-card"><div class="parent-card-header"><i class="fas fa-microchip"></i> Дополнительное образование</div><div class="parent-card-body"><p>Лаборатории робототехники, сетевых технологий, БПЛА, 3D-центр. Спортсекции: плавание, стрельба, игровые виды. Творчество: вокал, журналистика, актёрское мастерство.</p></div></div>
             </div>
-            <div class="card"><i class="fas fa-calendar-alt"></i><h3>Учебный процесс и каникулы (2025–2026 уч. год)</h3><div class="table-wrapper"><table><thead><tr><th>Период</th><th>Даты</th></tr></thead><tbody><tr><td>I полугодие</td><td>01.09 – 28.10</td></tr><tr><td>Осенние каникулы</td><td>29.10 – 06.11</td></tr><tr><td>II полугодие</td><td>10.01 – 27.03</td></tr><tr><td>Весенние каникулы</td><td>28.03 – 03.04</td></tr><tr><td>Зимняя зачётная неделя</td><td>18.12 – 23.12</td></tr><tr><td>Летняя учебная практика</td><td>31.05 – 15.06</td></tr></tbody></table></div><p><strong>Важно:</strong> билеты на каникулы приобретать только после согласования с администрацией школы.</p></div>
+            <div class="card"><i class="fas fa-calendar-alt"></i><h3>Учебный процесс и каникулы (2025–2026 уч. год)</h3><div class="table-wrapper"><table><thead><tr><th>Период</th><th>Даты</th></tr></thead><tbody><tr><td>I полугодие</td><td>01.09 – 28.10</td></tr>
+                <tr><td>Осенние каникулы</td><td>29.10 – 06.11</td></tr>
+                <tr><td>II полугодие</td><td>10.01 – 27.03</td></tr>
+                <tr><td>Весенние каникулы</td><td>28.03 – 03.04</td></tr>
+                <tr><td>Зимняя зачётная неделя</td><td>18.12 – 23.12</td></tr>
+                <tr><td>Летняя учебная практика</td><td>31.05 – 15.06</td></tr>
+                </tbody></table><p><strong>Важно:</strong> билеты на каникулы приобретать только после согласования с администрацией школы.</p></div>
         </div>
     </section>
 
@@ -831,12 +828,10 @@
 <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
 
 <script>
-    // Мобильное меню
     const mobileBtn = document.getElementById('mobileMenu');
     const nav = document.getElementById('navLinks');
     mobileBtn?.addEventListener('click', () => nav.classList.toggle('active'));
-    
-    // Плавный скролл
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href').substring(1);
@@ -849,29 +844,25 @@
             }
         });
     });
-    
-    // Форма обратной связи
+
     const form = document.getElementById('callbackForm');
-    form?.addEventListener('submit', (e) => { 
-        e.preventDefault(); 
-        alert('Спасибо! Ваша заявка принята. Мы свяжемся с вами.'); 
-        form.reset(); 
+    form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Спасибо! Ваша заявка принята. Мы свяжемся с вами.');
+        form.reset();
     });
-    
-    // Демо-скачивание
+
     document.querySelectorAll('.btn-download').forEach(btn => {
         btn.addEventListener('click', () => alert('Демонстрационная версия материалов. Полный файл можно запросить в учебной части.'));
     });
-    
-    // Кнопка наверх
+
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) backToTop.classList.add('show');
         else backToTop.classList.remove('show');
     });
     backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    
-    // Эффект движения мыши для фона hero
+
     const heroBg = document.getElementById('heroBg');
     const heroSection = document.querySelector('.hero');
     heroSection?.addEventListener('mousemove', (e) => {
@@ -881,22 +872,20 @@
             heroBg.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
         }
     });
-    
-    // 3D tilt для карточек
-    VanillaTilt.init(document.querySelectorAll('.card, .teacher-card, .parent-card, .methodic-card, .contact-card'), {
+
+    // 3D tilt для карточек (убрал .contact-card, которого нет)
+    VanillaTilt.init(document.querySelectorAll('.card, .teacher-card, .parent-card, .methodic-card'), {
         max: 8,
         speed: 400,
         glare: true,
         "max-glare": 0.2,
     });
-    
-    // Шторка
+
     const curtain = document.getElementById('curtain');
     const openBtn = document.getElementById('openCurtainBtn');
     const closeBtn = document.getElementById('closeCurtain');
     openBtn?.addEventListener('click', () => curtain.classList.add('open'));
     closeBtn?.addEventListener('click', () => curtain.classList.remove('open'));
-    // Закрытие по клику вне шторки (на затемнение нет, но можно по Esc)
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && curtain.classList.contains('open')) {
             curtain.classList.remove('open');
