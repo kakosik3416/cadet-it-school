@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Кадетский корпус (школа IT‑технологий) на базе Военной академии связи. Подготовка к ЕГЭ, IT-профиль, полный пансион. Поступление в 10-11 классы.">
+    <link rel="canonical" href="https://kakosik3416.github.io/cadet-it-school/">
     <title>Кадетский корпус (школа IT‑технологий) | Минобороны России</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш_ключ&lang=ru_RU" type="text/javascript"></script>
     <style>
         * {
             margin: 0;
@@ -20,24 +23,19 @@
             line-height: 1.5;
             scroll-behavior: smooth;
             overflow-x: hidden;
-            padding-top: 12px; /* чтобы контент не заезжал под шапку */
+            padding-top: 12px;
         }
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1a1f2e;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #ffcd4a;
-            border-radius: 10px;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1a1f2e; }
+        ::-webkit-scrollbar-thumb { background: #ffcd4a; border-radius: 10px; }
+
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 24px;
         }
-        /* Новая плавающая шапка как "шторка" */
+
+        /* ПЛАВАЮЩАЯ ШАПКА */
         header {
             position: sticky;
             top: 12px;
@@ -49,7 +47,6 @@
             border-radius: 24px;
             border: 1px solid rgba(255, 205, 74, 0.25);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
         }
         .header-flex {
             display: flex;
@@ -58,23 +55,40 @@
             padding: 12px 24px;
             flex-wrap: wrap;
         }
-        .logo h1 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ffcd4a, #ffa500);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo img {
+            height: 50px;
+            width: auto;
+            transition: all 0.3s ease;
+        }
+        /* Глитч-эффект на логотип */
+        .logo img:hover {
+            filter: drop-shadow(2px 0 red) drop-shadow(-2px 0 cyan);
+            animation: glitch 0.3s infinite;
+        }
+        @keyframes glitch {
+            0% { transform: skew(0deg, 0deg); }
+            20% { transform: skew(2deg, 1deg); }
+            40% { transform: skew(-2deg, -1deg); }
+            60% { transform: skew(1deg, 0deg); }
+            80% { transform: skew(-1deg, 1deg); }
+            100% { transform: skew(0deg, 0deg); }
         }
         .logo p {
             font-size: 0.7rem;
             color: #b9c7d9;
             letter-spacing: 1px;
+            max-width: 180px;
         }
         .nav-links {
             display: flex;
             gap: 28px;
             list-style: none;
+            align-items: center;
         }
         .nav-links a {
             text-decoration: none;
@@ -86,9 +100,27 @@
             color: #ffcd4a;
             text-shadow: 0 0 5px rgba(255,205,74,0.5);
         }
-        .dropdown {
-            position: relative;
+        .call-btn {
+            background: #ffcd4a;
+            color: #0a1a2f !important;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
+        .call-btn:hover {
+            background: #e0b33b;
+            transform: scale(1.02);
+        }
+        .mobile-menu {
+            display: none;
+            font-size: 1.8rem;
+            color: #ffcd4a;
+            cursor: pointer;
+        }
+        .dropdown { position: relative; }
         .dropdown-content {
             display: none;
             position: absolute;
@@ -112,34 +144,25 @@
             background: rgba(255,205,74,0.2);
             color: #ffcd4a;
         }
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        .mobile-menu {
-            display: none;
-            font-size: 1.8rem;
-            color: #ffcd4a;
-            cursor: pointer;
-        }
-        /* Остальные стили без изменений */
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* HERO С ВИДЕО-ФОНОМ */
         .hero {
             position: relative;
             min-height: 90vh;
             display: flex;
             align-items: center;
             overflow: hidden;
-            background: radial-gradient(circle at 30% 40%, #0a1a2f, #03060c);
         }
-        .hero-bg {
+        .hero-video-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://via.placeholder.com/1920x1080?text=Кадеты+на+занятии') center/cover no-repeat;
-            opacity: 0.15;
+            object-fit: cover;
             z-index: 0;
-            transition: transform 0.1s ease-out;
+            opacity: 0.35;
         }
         .hero .container {
             position: relative;
@@ -151,18 +174,14 @@
             align-items: center;
             gap: 40px;
         }
-        .hero-text {
-            flex: 1;
-        }
+        .hero-text { flex: 1; }
         .hero-text h1 {
             font-size: 3rem;
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 20px;
         }
-        .hero-text h1 span {
-            color: #ffcd4a;
-        }
+        .hero-text h1 span { color: #ffcd4a; }
         .hero-text p {
             font-size: 1.2rem;
             margin-bottom: 30px;
@@ -212,408 +231,174 @@
             aspect-ratio: 16/9;
             border: none;
         }
-        .stats {
+
+        /* АНИМАЦИЯ ПРИ СКРОЛЛЕ */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* СЧЁТЧИК */
+        .countdown {
             background: #0f1422;
-            padding: 60px 0;
-        }
-        .stats-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 30px;
+            padding: 30px 0;
             text-align: center;
+            border-bottom: 1px solid rgba(255,205,74,0.2);
         }
-        .stat-card {
-            flex: 1;
-            min-width: 160px;
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
         }
-        .stat-number {
+        .countdown-item {
+            background: rgba(20,28,44,0.9);
+            border-radius: 20px;
+            padding: 15px 25px;
+            min-width: 100px;
+            border: 1px solid rgba(255,205,74,0.4);
+        }
+        .countdown-number {
             font-size: 2.5rem;
             font-weight: 800;
             color: #ffcd4a;
+            line-height: 1;
         }
-        .stat-label {
-            font-size: 1rem;
-            color: #ccd6f0;
-            font-weight: 500;
+        .countdown-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .section {
-            padding: 80px 0;
-        }
-        .section:nth-child(even) {
-            background: #0f1422;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 50px;
-            color: #fff;
-        }
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 3px;
-            background: #ffcd4a;
-            margin: 12px auto 0;
-        }
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-        .card {
-            background: rgba(20, 28, 44, 0.8);
-            backdrop-filter: blur(4px);
-            border-radius: 24px;
-            padding: 28px;
-            border: 1px solid rgba(255,205,74,0.2);
-            transition: all 0.3s ease;
-        }
-        .card i {
-            font-size: 2.2rem;
-            color: #ffcd4a;
-            margin-bottom: 18px;
-        }
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 12px;
-        }
-        .card ul {
-            margin-left: 20px;
-            color: #ccd6f0;
-        }
-        .bg-light {
-            background: #0a0f1c;
-        }
-        .badge {
-            background: rgba(255,205,74,0.2);
-            color: #ffcd4a;
-            border-radius: 20px;
-            padding: 4px 12px;
-            font-size: 0.7rem;
-            display: inline-block;
-            margin-top: 8px;
-        }
-        .table-wrapper {
-            overflow-x: auto;
-            margin: 20px 0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: #0f1422;
-            border-radius: 16px;
-            overflow: hidden;
-        }
-        th, td {
-            padding: 12px 16px;
-            text-align: left;
-            border-bottom: 1px solid #2a2f3f;
-        }
-        th {
-            background: #1e2538;
-            color: #ffcd4a;
-            font-weight: 600;
-        }
-        .subjects-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .subject-tag {
-            background: rgba(255,205,74,0.15);
-            border-radius: 40px;
-            padding: 8px 20px;
-            font-weight: 500;
-            color: #ffcd4a;
-        }
-        .teacher-category {
-            margin-bottom: 40px;
-        }
-        .teacher-category h3 {
-            font-size: 1.6rem;
-            color: #ffcd4a;
-            border-left: 4px solid #ffcd4a;
-            padding-left: 20px;
-            margin-bottom: 20px;
-        }
-        .teacher-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 24px;
-        }
-        .teacher-card {
-            background: rgba(20, 28, 44, 0.8);
-            border-radius: 20px;
-            padding: 20px;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255,205,74,0.2);
-            transition: 0.2s;
-        }
-        .teacher-card:hover {
-            transform: translateY(-3px);
-            border-color: #ffcd4a;
-        }
-        .teacher-card h4 {
-            color: #fff;
-            font-size: 1.2rem;
-            margin-bottom: 6px;
-        }
-        .teacher-card .position {
-            color: #ffcd4a;
-            font-weight: 600;
-            font-size: 0.85rem;
-            margin-bottom: 8px;
-        }
-        .teacher-card .details {
-            font-size: 0.85rem;
-            color: #ccd6f0;
-            margin-top: 8px;
-        }
-        .parent-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        .parent-card {
-            background: rgba(20, 28, 44, 0.8);
+
+        /* КАРТА */
+        .map-container {
+            height: 400px;
             border-radius: 24px;
             overflow: hidden;
-            border: 1px solid rgba(255,205,74,0.2);
-            transition: 0.2s;
-        }
-        .parent-card:hover {
-            transform: translateY(-3px);
-            border-color: #ffcd4a;
-        }
-        .parent-card-header {
-            background: #0f1422;
-            padding: 20px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            border-bottom: 1px solid rgba(255,205,74,0.2);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #ffcd4a;
-        }
-        .parent-card-header i {
-            color: #ffcd4a;
-            font-size: 1.5rem;
-        }
-        .parent-card-body {
-            padding: 20px;
-        }
-        .methodics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
+            border: 1px solid rgba(255,205,74,0.3);
             margin-top: 30px;
         }
-        .methodic-card {
-            background: rgba(20, 28, 44, 0.8);
-            border-radius: 24px;
-            overflow: hidden;
-            border: 1px solid rgba(255,205,74,0.2);
-        }
-        .methodic-header {
-            background: #0f1422;
-            padding: 20px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            border-bottom: 1px solid rgba(255,205,74,0.2);
-            color: #ffcd4a;
-        }
-        .methodic-body {
-            padding: 20px;
-        }
-        .btn-download {
-            background: rgba(255,205,74,0.2);
-            color: #ffcd4a;
-            padding: 6px 12px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 10px;
-            cursor: pointer;
-            border: none;
-            transition: 0.2s;
-        }
-        .btn-download:hover {
-            background: rgba(255,205,74,0.4);
-        }
-        .contact-form {
-            background: #0f1422;
-            padding: 60px 0;
-        }
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-        input, textarea {
+        #map {
             width: 100%;
-            padding: 14px 18px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,205,74,0.3);
-            font-family: inherit;
-            margin-bottom: 16px;
-            background: #1a1f2e;
-            color: white;
+            height: 100%;
         }
-        input::placeholder, textarea::placeholder {
-            color: #aaa;
-        }
-        button[type="submit"] {
-            background: #ffcd4a;
-            color: #0a1a2f;
-            border: none;
-            padding: 14px;
-            font-weight: 700;
-            border-radius: 40px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        button[type="submit"]:hover {
-            background: #e0b33b;
-            transform: scale(1.02);
-        }
-        footer {
-            background: #03060c;
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid rgba(255,205,74,0.2);
-        }
-        .footer-links a {
-            color: #ffcd4a;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #ffcd4a;
-            color: #0a1a2f;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
+
+        /* ПАРТНЁРЫ */
+        .partners-grid {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
             justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .partner-logo {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 20px 30px;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,205,74,0.2);
             cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
+        }
+        .partner-logo:hover {
+            transform: translateY(-5px);
+            border-color: #ffcd4a;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .partner-logo img {
+            max-height: 60px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.7;
             transition: 0.3s;
-            z-index: 99;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
-        .back-to-top.show {
+        .partner-logo:hover img {
             opacity: 1;
-            visibility: visible;
+            filter: none;
         }
-        .curtain {
-            position: fixed;
-            bottom: -400px;
-            left: 0;
-            width: 100%;
-            background: #0f1422;
-            border-top: 3px solid #ffcd4a;
-            box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
-            transition: bottom 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            z-index: 1000;
-            padding: 30px 20px;
-            text-align: center;
-        }
-        .curtain.open {
-            bottom: 0;
-        }
-        .curtain .close-curtain {
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: #ffcd4a;
-        }
-        .curtain h3 {
-            color: #ffcd4a;
-            margin-bottom: 20px;
-        }
-        .curtain p {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .curtain .btn {
-            margin-top: 20px;
-        }
-        .table-summary {
-            background: rgba(255,205,74,0.1);
-            border-radius: 16px;
-            padding: 12px 16px;
-            margin-top: 15px;
-            font-size: 0.9rem;
-            border-left: 3px solid #ffcd4a;
-        }
-        .table-wrapper h4 {
-            color: #ffcd4a;
-            margin: 20px 0 10px 0;
-            font-size: 1.2rem;
-        }
+
+        /* ОСТАЛЬНЫЕ СТИЛИ (без изменений) */
+        .stats { background: #0f1422; padding: 60px 0; }
+        .stats-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; text-align: center; }
+        .stat-card { flex: 1; min-width: 160px; }
+        .stat-number { font-size: 2.5rem; font-weight: 800; color: #ffcd4a; }
+        .stat-label { font-size: 1rem; color: #ccd6f0; font-weight: 500; }
+        .section { padding: 80px 0; }
+        .section:nth-child(even) { background: #0f1422; }
+        .section-title { text-align: center; font-size: 2.2rem; font-weight: 700; margin-bottom: 50px; color: #fff; }
+        .section-title:after { content: ''; display: block; width: 80px; height: 3px; background: #ffcd4a; margin: 12px auto 0; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .card { background: rgba(20, 28, 44, 0.8); backdrop-filter: blur(4px); border-radius: 24px; padding: 28px; border: 1px solid rgba(255,205,74,0.2); transition: all 0.3s ease; }
+        .card i { font-size: 2.2rem; color: #ffcd4a; margin-bottom: 18px; }
+        .card h3 { font-size: 1.5rem; margin-bottom: 12px; }
+        .card ul { margin-left: 20px; color: #ccd6f0; }
+        .bg-light { background: #0a0f1c; }
+        .badge { background: rgba(255,205,74,0.2); color: #ffcd4a; border-radius: 20px; padding: 4px 12px; font-size: 0.7rem; display: inline-block; margin-top: 8px; }
+        .table-wrapper { overflow-x: auto; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; background: #0f1422; border-radius: 16px; overflow: hidden; }
+        th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #2a2f3f; }
+        th { background: #1e2538; color: #ffcd4a; font-weight: 600; }
+        .subjects-list { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 20px; }
+        .subject-tag { background: rgba(255,205,74,0.15); border-radius: 40px; padding: 8px 20px; font-weight: 500; color: #ffcd4a; }
+        .teacher-category { margin-bottom: 40px; }
+        .teacher-category h3 { font-size: 1.6rem; color: #ffcd4a; border-left: 4px solid #ffcd4a; padding-left: 20px; margin-bottom: 20px; }
+        .teacher-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+        .teacher-card { background: rgba(20, 28, 44, 0.8); border-radius: 20px; padding: 20px; backdrop-filter: blur(4px); border: 1px solid rgba(255,205,74,0.2); transition: 0.2s; }
+        .teacher-card:hover { transform: translateY(-3px); border-color: #ffcd4a; }
+        .teacher-card h4 { color: #fff; font-size: 1.2rem; margin-bottom: 6px; }
+        .teacher-card .position { color: #ffcd4a; font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; }
+        .teacher-card .details { font-size: 0.85rem; color: #ccd6f0; margin-top: 8px; }
+        .parent-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .parent-card { background: rgba(20, 28, 44, 0.8); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,205,74,0.2); transition: 0.2s; }
+        .parent-card:hover { transform: translateY(-3px); border-color: #ffcd4a; }
+        .parent-card-header { background: #0f1422; padding: 20px; font-weight: 700; font-size: 1.2rem; border-bottom: 1px solid rgba(255,205,74,0.2); display: flex; align-items: center; gap: 12px; color: #ffcd4a; }
+        .parent-card-header i { color: #ffcd4a; font-size: 1.5rem; }
+        .parent-card-body { padding: 20px; }
+        .methodics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 30px; }
+        .methodic-card { background: rgba(20, 28, 44, 0.8); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,205,74,0.2); }
+        .methodic-header { background: #0f1422; padding: 20px; font-weight: 700; font-size: 1.2rem; border-bottom: 1px solid rgba(255,205,74,0.2); color: #ffcd4a; }
+        .methodic-body { padding: 20px; }
+        .btn-download { background: rgba(255,205,74,0.2); color: #ffcd4a; padding: 6px 12px; border-radius: 30px; font-size: 0.8rem; display: inline-block; margin-top: 10px; cursor: pointer; border: none; }
+        .btn-download:hover { background: rgba(255,205,74,0.4); }
+        .contact-form { background: #0f1422; padding: 60px 0; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        input, textarea { width: 100%; padding: 14px 18px; border-radius: 12px; border: 1px solid rgba(255,205,74,0.3); font-family: inherit; margin-bottom: 16px; background: #1a1f2e; color: white; }
+        input::placeholder, textarea::placeholder { color: #aaa; }
+        button[type="submit"] { background: #ffcd4a; color: #0a1a2f; border: none; padding: 14px; font-weight: 700; border-radius: 40px; cursor: pointer; transition: 0.2s; }
+        button[type="submit"]:hover { background: #e0b33b; transform: scale(1.02); }
+        footer { background: #03060c; padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,205,74,0.2); }
+        .footer-links a { color: #ffcd4a; text-decoration: none; margin: 0 15px; }
+        .back-to-top { position: fixed; bottom: 30px; right: 30px; background: #ffcd4a; color: #0a1a2f; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 99; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .back-to-top.show { opacity: 1; visibility: visible; }
+        .curtain { position: fixed; bottom: -400px; left: 0; width: 100%; background: #0f1422; border-top: 3px solid #ffcd4a; box-shadow: 0 -10px 30px rgba(0,0,0,0.5); transition: bottom 0.4s cubic-bezier(0.2,0.9,0.4,1.1); z-index: 1000; padding: 30px 20px; text-align: center; }
+        .curtain.open { bottom: 0; }
+        .curtain .close-curtain { position: absolute; top: 15px; right: 25px; font-size: 1.8rem; cursor: pointer; color: #ffcd4a; }
+        .curtain h3 { color: #ffcd4a; margin-bottom: 20px; }
+        .curtain p { max-width: 600px; margin: 0 auto; }
+        .curtain .btn { margin-top: 20px; }
+        .table-summary { background: rgba(255,205,74,0.1); border-radius: 16px; padding: 12px 16px; margin-top: 15px; font-size: 0.9rem; border-left: 3px solid #ffcd4a; }
+        .table-wrapper h4 { color: #ffcd4a; margin: 20px 0 10px 0; font-size: 1.2rem; }
         @media (max-width: 768px) {
-            header {
-                width: calc(100% - 16px);
-                margin: 0 8px;
-                top: 8px;
-            }
-            .header-flex {
-                padding: 10px 16px;
-            }
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background: #0a0f1c;
-                padding: 20px;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                gap: 15px;
-                border-radius: 20px;
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .mobile-menu {
-                display: block;
-            }
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-                padding-left: 20px;
-            }
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            .stats-grid {
-                flex-direction: column;
-            }
-            .teacher-grid {
-                grid-template-columns: 1fr;
-            }
-            .parent-grid {
-                grid-template-columns: 1fr;
-            }
+            header { width: calc(100% - 16px); margin: 0 8px; top: 8px; }
+            .header-flex { padding: 10px 16px; }
+            .nav-links { display: none; flex-direction: column; width: 100%; background: #0a0f1c; padding: 20px; position: absolute; top: 70px; left: 0; gap: 15px; border-radius: 20px; }
+            .nav-links.active { display: flex; }
+            .mobile-menu { display: block; }
+            .dropdown-content { position: static; box-shadow: none; padding-left: 20px; }
+            .hero-text h1 { font-size: 2rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .stats-grid { flex-direction: column; }
+            .teacher-grid { grid-template-columns: 1fr; }
+            .parent-grid { grid-template-columns: 1fr; }
+            .countdown-container { gap: 15px; }
+            .countdown-item { padding: 10px 15px; min-width: 70px; }
+            .countdown-number { font-size: 1.5rem; }
+            .logo img { height: 40px; }
+            .logo p { font-size: 0.6rem; max-width: 140px; }
         }
     </style>
 </head>
@@ -621,7 +406,10 @@
 
 <header>
     <div class="header-flex">
-        <div class="logo"><h1>КИТШ</h1><p>Кадетский корпус (школа IT‑технологий)</p></div>
+        <div class="logo">
+            <img src="logo.png" alt="Логотип Кадетского корпуса">
+            <p>Кадетский корпус (школа IT‑технологий)</p>
+        </div>
         <div class="mobile-menu" id="mobileMenu"><i class="fas fa-bars"></i></div>
         <ul class="nav-links" id="navLinks">
             <li><a href="#home">Главная</a></li>
@@ -648,13 +436,17 @@
             <li><a href="#teachers">Преподаватели</a></li>
             <li><a href="#parents">Родителям</a></li>
             <li><a href="#contacts">Контакты</a></li>
+            <li><a href="tel:+78122479866" class="call-btn"><i class="fas fa-phone-alt"></i> <span>Позвонить</span></a></li>
         </ul>
     </div>
 </header>
 
 <main>
+    <!-- Hero с видео-фоном -->
     <section id="home" class="hero">
-        <div class="hero-bg" id="heroBg"></div>
+        <video class="hero-video-bg" autoplay muted loop playsinline poster="https://via.placeholder.com/1920x1080?text=Кадеты">
+            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+        </video>
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-text">
@@ -672,6 +464,14 @@
         </div>
     </section>
 
+    <!-- Счётчик дней до окончания приёма -->
+    <div class="countdown">
+        <div class="container">
+            <div class="countdown-container" id="countdown"></div>
+        </div>
+    </div>
+
+    <!-- Шторка -->
     <div id="curtain" class="curtain">
         <div class="close-curtain" id="closeCurtain">&times;</div>
         <h3><i class="fas fa-info-circle"></i> Уважаемые родители и абитуриенты!</h3>
@@ -679,7 +479,8 @@
         <button class="btn btn-primary" onclick="document.getElementById('admission').scrollIntoView({behavior:'smooth'}); document.getElementById('curtain').classList.remove('open');">Перейти к поступлению</button>
     </div>
 
-    <section class="stats">
+    <!-- Статистика -->
+    <section class="stats fade-up">
         <div class="container stats-grid">
             <div class="stat-card"><div class="stat-number">80</div><div class="stat-label">Кадет (10-11 классы)</div></div>
             <div class="stat-card"><div class="stat-number">40</div><div class="stat-label">Мест в год (10 класс)</div></div>
@@ -688,7 +489,8 @@
         </div>
     </section>
 
-    <section id="about" class="section">
+    <!-- О кадетском корпусе -->
+    <section id="about" class="section fade-up">
         <div class="container">
             <h2 class="section-title">О кадетском корпусе</h2>
             <div class="grid-2">
@@ -700,23 +502,23 @@
         </div>
     </section>
 
-    <!-- Сведения об образовательной организации (все подразделы) -->
-    <section id="basic-info" class="section bg-light"><div class="container"><h2 class="section-title">Основные сведения</h2><div class="card"><i class="fas fa-building"></i><h3>Полное наименование</h3><p>Кадетский корпус (школа IT-технологий) Федерального государственного казенного военного образовательного учреждения высшего образования «Военная орденов Жукова и Ленина Краснознаменная академия связи имени Маршала Советского Союза С.М. Буденного» Министерства обороны Российской Федерации</p><p><strong>Сокращённое наименование:</strong> Школа IT-технологий</p><p><strong>Учредитель:</strong> Российская Федерация, Министерство обороны РФ</p><p><strong>Адрес:</strong> 194064, г. Санкт-Петербург, Тихорецкий пр., д. 3</p><p><strong>Режим работы:</strong> круглосуточно</p><p><strong>Телефон:</strong> 8 (812) 247-98-66</p><p><strong>E-mail:</strong> sch-vasit@mil.ru</p><p><strong>Сайт:</strong> itschool.mil.ru</p></div></div></section>
-    <section id="history" class="section"><div class="container"><h2 class="section-title">История</h2><div class="card"><i class="fas fa-history"></i><p>Кадетский корпус (школа IT-технологий) создан в соответствии с решением Министра обороны РФ от 31 октября 2014 года. Открыт 1 сентября 2015 года на базе Военной академии связи им. Маршала Советского Союза С.М. Буденного.</p></div></div></section>
-    <section id="structure" class="section bg-light"><div class="container"><h2 class="section-title">Структура и органы управления</h2><div class="card"><i class="fas fa-sitemap"></i><p>Управление осуществляет начальник Кадетского корпуса. В составе: учебный отдел, воспитательный отдел, педагогический совет, родительский комитет. Структурные подразделения: кафедры академии, лаборатории, медицинский пункт.</p></div></div></section>
-    <section id="docs" class="section"><div class="container"><h2 class="section-title">Документы</h2><div class="card"><i class="fas fa-file-alt"></i><p>Лицензия на осуществление образовательной деятельности, свидетельство о государственной аккредитации, устав, правила внутреннего распорядка, локальные нормативные акты. Документы доступны по запросу в учебной части.</p></div></div></section>
-    <section id="edu-standards" class="section bg-light"><div class="container"><h2 class="section-title">Образовательные стандарты и требования</h2><div class="card"><i class="fas fa-book"></i><p>Реализуются федеральные государственные образовательные стандарты среднего общего образования. Программы разработаны с учётом военно-профессиональной ориентации и углублённого изучения физики, математики, информатики.</p></div></div></section>
-    <section id="management" class="section"><div class="container"><h2 class="section-title">Руководство. Педагогический состав</h2><div class="grid-2"><div class="card"><i class="fas fa-user-tie"></i><h3>Пономарева Юлия Сергеевна</h3><p>Начальник Кадетского корпуса, кандидат педагогических наук, доцент</p></div><div class="card"><i class="fas fa-chalkboard-user"></i><h3>Леонова Ирина Викторовна</h3><p>Заместитель по учебной работе, высшая категория</p></div><div class="card"><i class="fas fa-users"></i><h3>Воронов Дмитрий Александрович</h3><p>Заместитель по воспитательной работе</p></div></div><p class="badge">Полный список преподавателей – в разделе «Преподаватели».</p></div></section>
-    <section id="material" class="section bg-light"><div class="container"><h2 class="section-title">Материально-техническое обеспечение</h2><div class="card"><i class="fas fa-laptop-code"></i><h3>Оснащение</h3><ul><li>12 учебных классов с интерактивными комплексами</li><li>Лаборатории: сетевых технологий, робототехники, программного обеспечения, электронной инженерии (осциллографы, паяльные станции, растровый микроскоп)</li><li>3D-центр (станки, принтеры), центр виртуальной реальности</li><li>Библиотека с компьютерными местами, доступ к электронным ресурсам</li><li>3 спортивных зала, бассейн, открытый стадион</li><li>Комнаты на 2 человека, санузел, душ, интернет</li><li>Пятиразовое питание по норме «Кадетский пак»</li></ul></div></div></section>
-    <section id="scholarships" class="section"><div class="container"><h2 class="section-title">Стипендии и меры поддержки</h2><div class="card"><i class="fas fa-money-bill-wave"></i><p>Ежемесячное денежное содержание – 1040 руб., детям-сиротам – 2080 руб. Бесплатный проезд к месту каникул (1 раз в год, сиротам – 2 раза). Бесплатное проживание, питание, обмундирование, учебники, ноутбук.</p></div></div></section>
-    <section id="paid" class="section bg-light"><div class="container"><h2 class="section-title">Платные образовательные услуги</h2><div class="card"><i class="fas fa-ban"></i><p>Платные образовательные услуги не предоставляются. Обучение осуществляется за счёт федерального бюджета.</p></div></div></section>
-    <section id="vacancies" class="section bg-light"><div class="container"><h2 class="section-title">Вакантные места для приема обучающихся</h2><div class="card"><i class="fas fa-chart-line"></i><p>Штат укомплектован на 98%. На 2026 год: 10 класс – 39 мест, 11 класс – 39 мест.</p></div></div></section>
-    <section id="graduates" class="section"><div class="container"><h2 class="section-title">Выпускники</h2><div class="card"><i class="fas fa-award"></i><p>Выпускники поступают в ведущие военные и гражданские вузы: Военная академия связи, МГТУ им. Баумана, МФТИ, НИУ ВШЭ. Ежегодно средний балл ЕГЭ – 85+, более 45% набирают 240+ баллов по трём предметам.</p></div></div></section>
-    <section id="catering" class="section bg-light"><div class="container"><h2 class="section-title">Организация питания</h2><div class="card"><i class="fas fa-utensils"></i><p>Пятиразовое питание по норме №6 (Кадетский пак), «шведский стол» – 3 блюда на выбор. Денежная компенсация на время каникул.</p></div></div></section>
-    <section id="safety" class="section"><div class="container"><h2 class="section-title">Безопасность</h2><div class="card"><i class="fas fa-shield-alt"></i><p>Круглосуточная охрана, пропускной режим, видеонаблюдение. Медицинский пункт, договор с поликлиникой. Проводятся тренировки по антитеррористической защищённости и пожарной безопасности.</p></div></div></section>
+    <!-- Сведения об ОО (все подразделы) – адрес обновлён -->
+    <section id="basic-info" class="section bg-light fade-up"><div class="container"><h2 class="section-title">Основные сведения</h2><div class="card"><i class="fas fa-building"></i><h3>Полное наименование</h3><p>Кадетский корпус (школа IT-технологий) Федерального государственного казенного военного образовательного учреждения высшего образования «Военная орденов Жукова и Ленина Краснознаменная академия связи имени Маршала Советского Союза С.М. Буденного» Министерства обороны Российской Федерации</p><p><strong>Сокращённое наименование:</strong> Школа IT-технологий</p><p><strong>Учредитель:</strong> Российская Федерация, Министерство обороны РФ</p><p><strong>Адрес:</strong> 194064, г. Санкт-Петербург, Тихорецкий пр., д. 3</p><p><strong>Режим работы:</strong> круглосуточно</p><p><strong>Телефон:</strong> 8 (812) 247-98-66</p><p><strong>E-mail:</strong> sch-vasit@mil.ru</p><p><strong>Сайт:</strong> itschool.mil.ru</p></div></div></section>
+    <section id="history" class="section fade-up"><div class="container"><h2 class="section-title">История</h2><div class="card"><i class="fas fa-history"></i><p>Кадетский корпус (школа IT-технологий) создан в соответствии с решением Министра обороны РФ от 31 октября 2014 года. Открыт 1 сентября 2015 года на базе Военной академии связи им. Маршала Советского Союза С.М. Буденного.</p></div></div></section>
+    <section id="structure" class="section bg-light fade-up"><div class="container"><h2 class="section-title">Структура и органы управления</h2><div class="card"><i class="fas fa-sitemap"></i><p>Управление осуществляет начальник Кадетского корпуса. В составе: учебный отдел, воспитательный отдел, педагогический совет, родительский комитет. Структурные подразделения: кафедры академии, лаборатории, медицинский пункт.</p></div></div></section>
+    <section id="docs" class="section fade-up"><div class="container"><h2 class="section-title">Документы</h2><div class="card"><i class="fas fa-file-alt"></i><p>Лицензия на осуществление образовательной деятельности, свидетельство о государственной аккредитации, устав, правила внутреннего распорядка, локальные нормативные акты. Документы доступны по запросу в учебной части.</p></div></div></section>
+    <section id="edu-standards" class="section bg-light fade-up"><div class="container"><h2 class="section-title">Образовательные стандарты и требования</h2><div class="card"><i class="fas fa-book"></i><p>Реализуются федеральные государственные образовательные стандарты среднего общего образования. Программы разработаны с учётом военно-профессиональной ориентации и углублённого изучения физики, математики, информатики.</p></div></div></section>
+    <section id="management" class="section fade-up"><div class="container"><h2 class="section-title">Руководство. Педагогический состав</h2><div class="grid-2"><div class="card"><i class="fas fa-user-tie"></i><h3>Пономарева Юлия Сергеевна</h3><p>Начальник Кадетского корпуса, кандидат педагогических наук, доцент</p></div><div class="card"><i class="fas fa-chalkboard-user"></i><h3>Леонова Ирина Викторовна</h3><p>Заместитель по учебной работе, высшая категория</p></div><div class="card"><i class="fas fa-users"></i><h3>Воронов Дмитрий Александрович</h3><p>Заместитель по воспитательной работе</p></div></div><p class="badge">Полный список преподавателей – в разделе «Преподаватели».</p></div></section>
+    <section id="material" class="section bg-light fade-up"><div class="container"><h2 class="section-title">Материально-техническое обеспечение</h2><div class="card"><i class="fas fa-laptop-code"></i><h3>Оснащение</h3><ul><li>12 учебных классов с интерактивными комплексами</li><li>Лаборатории: сетевых технологий, робототехники, программного обеспечения, электронной инженерии (осциллографы, паяльные станции, растровый микроскоп)</li><li>3D-центр (станки, принтеры), центр виртуальной реальности</li><li>Библиотека с компьютерными местами, доступ к электронным ресурсам</li><li>3 спортивных зала, бассейн, открытый стадион</li><li>Комнаты на 2 человека, санузел, душ, интернет</li><li>Пятиразовое питание по норме «Кадетский пак»</li></ul></div></div></section>
+    <section id="scholarships" class="section fade-up"><div class="container"><h2 class="section-title">Стипендии и меры поддержки</h2><div class="card"><i class="fas fa-money-bill-wave"></i><p>Ежемесячное денежное содержание – 1040 руб., детям-сиротам – 2080 руб. Бесплатный проезд к месту каникул (1 раз в год, сиротам – 2 раза). Бесплатное проживание, питание, обмундирование, учебники, ноутбук.</p></div></div></section>
+    <section id="paid" class="section bg-light fade-up"><div class="container"><h2 class="section-title">Платные образовательные услуги</h2><div class="card"><i class="fas fa-ban"></i><p>Платные образовательные услуги не предоставляются. Обучение осуществляется за счёт федерального бюджета.</p></div></div></section>
+    <section id="vacancies" class="section bg-light fade-up"><div class="container"><h2 class="section-title">Вакантные места для приема обучающихся</h2><div class="card"><i class="fas fa-chart-line"></i><p>Штат укомплектован на 98%. На 2026 год: 10 класс – 39 мест, 11 класс – 39 мест.</p></div></div></section>
+    <section id="graduates" class="section fade-up"><div class="container"><h2 class="section-title">Выпускники</h2><div class="card"><i class="fas fa-award"></i><p>Выпускники поступают в ведущие военные и гражданские вузы: Военная академия связи, МГТУ им. Баумана, МФТИ, НИУ ВШЭ. Ежегодно средний балл ЕГЭ – 85+, более 45% набирают 240+ баллов по трём предметам.</p></div></div></section>
+    <section id="catering" class="section bg-light fade-up"><div class="container"><h2 class="section-title">Организация питания</h2><div class="card"><i class="fas fa-utensils"></i><p>Пятиразовое питание по норме №6 (Кадетский пак), «шведский стол» – 3 блюда на выбор. Денежная компенсация на время каникул.</p></div></div></section>
+    <section id="safety" class="section fade-up"><div class="container"><h2 class="section-title">Безопасность</h2><div class="card"><i class="fas fa-shield-alt"></i><p>Круглосуточная охрана, пропускной режим, видеонаблюдение. Медицинский пункт, договор с поликлиникой. Проводятся тренировки по антитеррористической защищённости и пожарной безопасности.</p></div></div></section>
 
     <!-- Образование -->
-    <section id="education" class="section bg-light">
+    <section id="education" class="section bg-light fade-up">
         <div class="container">
             <h2 class="section-title">Образование</h2>
             <div class="grid-2" style="margin-bottom:40px;">
@@ -737,44 +539,25 @@
                 <p><strong>Внимание:</strong> С 2014 года в аудиториях ведётся видеонаблюдение. Нарушения фиксируются, результаты могут быть аннулированы.</p>
             </div>
             <div class="card">
-                <i class="fas fa-star-of-life"></i>
-                <h3>Результаты ЕГЭ выпускников</h3>
-                <div class="table-wrapper">
-                    <h4>2025 год</h4>
-                    <table>
-                        <thead>
-                            <tr><th scope="col">Предмет</th><th scope="col">Участников</th><th scope="col">%</th><th scope="col">Мин. балл</th><th scope="col">Макс. балл</th><th scope="col">Средний балл</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Русский язык</td><td>39</td><td>100%</td><td>36</td><td>94</td><td>74,7</td></tr>
-                            <tr><td>Математика (профиль)</td><td>39</td><td>100%</td><td>27</td><td>99</td><td>80,1</td></tr>
-                            <tr><td>Физика</td><td>38</td><td>97,4%</td><td>36</td><td>96</td><td>74,5</td></tr>
-                            <tr><td>Информатика</td><td>9</td><td>23,1%</td><td>40</td><td>100</td><td>89,8</td></tr>
-                        </tbody>
-                    </table>
-                    <div class="table-summary">✔ Выпускников: 39, аттестат получили 100%. С отличием I степени – 20,5%, II степени – 23,1%. 240+ баллов – 45,2%.</div>
-                </div>
-                <div class="table-wrapper">
-                    <h4>2024 год</h4>
-                    <table>
-                        <thead>
-                            <tr><th scope="col">Предмет</th><th scope="col">Участников</th><th scope="col">%</th><th scope="col">Мин. балл</th><th scope="col">Макс. балл</th><th scope="col">Средний балл</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Русский язык</td><td>39</td><td>100%</td><td>36</td><td>97</td><td>81,4</td></tr>
-                            <tr><td>Математика (профиль)</td><td>39</td><td>100%</td><td>27</td><td>100</td><td>84,7</td></tr>
-                            <tr><td>Физика</td><td>39</td><td>100%</td><td>36</td><td>100</td><td>82,5</td></tr>
-                            <tr><td>Информатика</td><td>10</td><td>25,6%</td><td>40</td><td>100</td><td>85,0</td></tr>
-                        </tbody>
-                    </table>
-                    <div class="table-summary">✔ Выпускников: 39, аттестат с отличием I степени – 20,5%, II степени – 18,0%. 240+ баллов – 89,7%.</div>
-                </div>
+                <i class="fas fa-star-of-life"></i><h3>Результаты ЕГЭ выпускников</h3>
+                <div class="table-wrapper"><h4>2025 год</h4><table><thead><tr><th scope="col">Предмет</th><th scope="col">Участников</th><th scope="col">%</th><th scope="col">Мин. балл</th><th scope="col">Макс. балл</th><th scope="col">Средний балл</th></tr></thead><tbody>
+                <tr><td>Русский язык</td><td>39</td><td>100%</td><td>36</td><td>94</td><td>74,7</td></tr>
+                <tr><td>Математика (профиль)</td><td>39</td><td>100%</td><td>27</td><td>99</td><td>80,1</td></tr>
+                <tr><td>Физика</td><td>38</td><td>97,4%</td><td>36</td><td>96</td><td>74,5</td></tr>
+                <tr><td>Информатика</td><td>9</td><td>23,1%</td><td>40</td><td>100</td><td>89,8</td></tr>
+                </tbody></table><div class="table-summary">✔ Выпускников: 39, аттестат получили 100%. С отличием I степени – 20,5%, II степени – 23,1%. 240+ баллов – 45,2%.</div></div>
+                <div class="table-wrapper"><h4>2024 год</h4><table><thead><tr><th scope="col">Предмет</th><th scope="col">Участников</th><th scope="col">%</th><th scope="col">Мин. балл</th><th scope="col">Макс. балл</th><th scope="col">Средний балл</th></tr></thead><tbody>
+                <tr><td>Русский язык</td><td>39</td><td>100%</td><td>36</td><td>97</td><td>81,4</td></tr>
+                <tr><td>Математика (профиль)</td><td>39</td><td>100%</td><td>27</td><td>100</td><td>84,7</td></tr>
+                <tr><td>Физика</td><td>39</td><td>100%</td><td>36</td><td>100</td><td>82,5</td></tr>
+                <tr><td>Информатика</td><td>10</td><td>25,6%</td><td>40</td><td>100</td><td>85,0</td></tr>
+                </tbody></table><div class="table-summary">✔ Выпускников: 39, аттестат с отличием I степени – 20,5%, II степени – 18,0%. 240+ баллов – 89,7%.</div></div>
             </div>
         </div>
     </section>
 
     <!-- Поступающим -->
-    <section id="admission" class="section">
+    <section id="admission" class="section fade-up">
         <div class="container">
             <h2 class="section-title">Поступающим</h2>
             <div class="grid-2">
@@ -789,26 +572,20 @@
                 </div>
             </div>
             <div class="card" style="margin-top:30px;"><i class="fas fa-running"></i><h3>Нормативы физической подготовленности</h3>
-                <div class="table-wrapper">
-                    <table>
-                        <thead><tr><th>Упражнение</th><th>Класс</th><th>«отл»</th><th>«хор»</th><th>«удовл»</th></tr></thead>
-                        <tbody>
-                            <tr><td rowspan="2">Бег 100 м (сек)</td><td>10 кл</td><td>14,2</td><td>14,6</td><td>15,2</td></tr>
-                            <tr><td>11 кл</td><td>14,0</td><td>14,4</td><td>15,0</td></tr>
-                            <tr><td rowspan="2">Подтягивание (раз)</td><td>10 кл</td><td>12</td><td>11</td><td>9</td></tr>
-                            <tr><td>11 кл</td><td>13</td><td>12</td><td>10</td></tr>
-                            <tr><td rowspan="2">Бег 1000 м (мин,с)</td><td>10 кл</td><td>3.35</td><td>3.45</td><td>4.10</td></tr>
-                            <tr><td>11 кл</td><td>3.30</td><td>3.40</td><td>4.05</td></tr>
-                        </tbody>
-                    </table>
-                    <p>Оценка уровня физической подготовленности определяется по сумме трёх упражнений.</p>
-                </div>
+                <div class="table-wrapper"><table><thead><tr><th>Упражнение</th><th>Класс</th><th>«отл»</th><th>«хор»</th><th>«удовл»</th></tr></thead><tbody>
+                <tr><td rowspan="2">Бег 100 м (сек)</td><td>10 кл</td><td>14,2</td><td>14,6</td><td>15,2</td></tr>
+                <tr><td>11 кл</td><td>14,0</td><td>14,4</td><td>15,0</td></tr>
+                <tr><td rowspan="2">Подтягивание (раз)</td><td>10 кл</td><td>12</td><td>11</td><td>9</td></tr>
+                <tr><td>11 кл</td><td>13</td><td>12</td><td>10</td></tr>
+                <tr><td rowspan="2">Бег 1000 м (мин,с)</td><td>10 кл</td><td>3.35</td><td>3.45</td><td>4.10</td></tr>
+                <tr><td>11 кл</td><td>3.30</td><td>3.40</td><td>4.05</td></tr>
+                </tbody></table><p>Оценка уровня физической подготовленности определяется по сумме трёх упражнений.</p>
             </div>
         </div>
     </section>
 
-    <!-- Преподаватели -->
-    <section id="teachers" class="section bg-light">
+    <!-- Преподаватели (сокращённо, но полный список) -->
+    <section id="teachers" class="section bg-light fade-up">
         <div class="container">
             <h2 class="section-title">Преподаватели и воспитатели</h2>
             <div class="teacher-category"><h3><i class="fas fa-user-tie"></i> Руководство</h3><div class="teacher-grid"><div class="teacher-card"><h4>Пономарева Юлия Сергеевна</h4><div class="position">Начальник Кадетского корпуса</div><div class="details">Кандидат педагогических наук, доцент. Почётный работник воспитания и просвещения РФ.</div></div><div class="teacher-card"><h4>Леонова Ирина Викторовна</h4><div class="position">Заместитель по учебной работе</div><div class="details">Высшая категория, почётный работник общего образования РФ.</div></div><div class="teacher-card"><h4>Воронов Дмитрий Александрович</h4><div class="position">Заместитель по воспитательной работе</div><div class="details">Почётный работник сферы воспитания детей и молодёжи РФ.</div></div></div></div>
@@ -822,7 +599,7 @@
     </section>
 
     <!-- Родителям -->
-    <section id="parents" class="section">
+    <section id="parents" class="section fade-up">
         <div class="container">
             <h2 class="section-title">Информация для родителей</h2>
             <div class="parent-grid">
@@ -833,24 +610,41 @@
                 <div class="parent-card"><div class="parent-card-header"><i class="fas fa-users"></i> Родительский комитет</div><div class="parent-card-body"><p>Контакт: заместитель по воспитательной работе Воронов Д.А. Приглашаются активные родители для участия в жизни школы.</p></div></div>
                 <div class="parent-card"><div class="parent-card-header"><i class="fas fa-microchip"></i> Дополнительное образование</div><div class="parent-card-body"><p>Лаборатории робототехники, сетевых технологий, БПЛА, 3D-центр. Спортсекции: плавание, стрельба, игровые виды. Творчество: вокал, журналистика, актёрское мастерство.</p></div></div>
             </div>
-            <div class="card"><i class="fas fa-calendar-alt"></i><h3>Учебный процесс и каникулы (2025–2026 уч. год)</h3><div class="table-wrapper">
-                <table>
-                    <thead><tr><th>Период</th><th>Даты</th></tr></thead>
-                    <tbody>
-                        <tr><td>I полугодие</td><td>01.09 – 28.10</td></tr>
-                        <tr><td>Осенние каникулы</td><td>29.10 – 06.11</td></tr>
-                        <tr><td>II полугодие</td><td>10.01 – 27.03</td></tr>
-                        <tr><td>Весенние каникулы</td><td>28.03 – 03.04</td></tr>
-                        <tr><td>Зимняя зачётная неделя</td><td>18.12 – 23.12</td></tr>
-                        <tr><td>Летняя учебная практика</td><td>31.05 – 15.06</td></tr>
-                    </tbody>
-                </table>
-                <p><strong>Важно:</strong> билеты на каникулы приобретать только после согласования с администрацией школы.</p>
-            </div></div>
+            <div class="card"><i class="fas fa-calendar-alt"></i><h3>Учебный процесс и каникулы (2025–2026 уч. год)</h3><div class="table-wrapper"><table><thead><tr><th>Период</th><th>Даты</th></tr></thead><tbody>
+            <tr><td>I полугодие</td><td>01.09 – 28.10</td></tr>
+            <tr><td>Осенние каникулы</td><td>29.10 – 06.11</td></tr>
+            <tr><td>II полугодие</td><td>10.01 – 27.03</td></tr>
+            <tr><td>Весенние каникулы</td><td>28.03 – 03.04</td></tr>
+            <tr><td>Зимняя зачётная неделя</td><td>18.12 – 23.12</td></tr>
+            <tr><td>Летняя учебная практика</td><td>31.05 – 15.06</td></tr>
+            </tbody></table><p><strong>Важно:</strong> билеты на каникулы приобретать только после согласования с администрацией школы.</p></div></div>
         </div>
     </section>
 
-    <section id="contacts" class="contact-form">
+    <!-- Карта -->
+    <section class="section bg-light fade-up">
+        <div class="container">
+            <h2 class="section-title">Наш адрес</h2>
+            <div class="map-container" id="map"></div>
+            <p style="text-align: center; margin-top: 20px;">г. Санкт-Петербург, Тихорецкий пр., д. 3</p>
+        </div>
+    </section>
+
+    <!-- Партнёры -->
+    <section class="section fade-up">
+        <div class="container">
+            <h2 class="section-title">Партнёры академии</h2>
+            <div class="partners-grid">
+                <div class="partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Ministry_of_Defense_of_the_Russian_Federation_Logo.svg" alt="Минобороны"></div>
+                <div class="partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Russian_Armed_Forces_emblem.svg" alt="ВС РФ"></div>
+                <div class="partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Rostelecom_logo_2016.svg" alt="Ростелеком"></div>
+                <div class="partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Kaspersky_Lab_Logo.svg" alt="Лаборатория Касперского"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="contact-form fade-up">
         <div class="container form-grid">
             <div>
                 <h3>Свяжитесь с нами</h3>
@@ -858,10 +652,10 @@
                 <p><strong>Режим работы:</strong> круглосуточно</p>
             </div>
             <form id="callbackForm">
-                <input type="text" placeholder="Ваше имя" required>
-                <input type="tel" placeholder="Телефон" required>
-                <input type="email" placeholder="E-mail">
-                <textarea rows="3" placeholder="Ваш вопрос"></textarea>
+                <input type="text" id="nameInput" aria-label="Ваше имя" placeholder="Ваше имя" required>
+                <input type="tel" id="phoneInput" aria-label="Телефон" placeholder="Телефон" required>
+                <input type="email" id="emailInput" aria-label="E-mail" placeholder="E-mail">
+                <textarea id="questionInput" rows="3" aria-label="Ваш вопрос" placeholder="Ваш вопрос"></textarea>
                 <button type="submit">Отправить заявку</button>
             </form>
         </div>
@@ -922,17 +716,53 @@
     });
     backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    const heroBg = document.getElementById('heroBg');
-    const heroSection = document.querySelector('.hero');
-    heroSection?.addEventListener('mousemove', (e) => {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
-        if (heroBg) {
-            heroBg.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
-        }
-    });
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+    fadeElements.forEach(el => observer.observe(el));
 
-    VanillaTilt.init(document.querySelectorAll('.card, .teacher-card, .parent-card, .methodic-card'), {
+    function updateCountdown() {
+        const targetDate = new Date(2026, 7, 1);
+        const now = new Date();
+        const diff = targetDate - now;
+        if (diff <= 0) {
+            document.getElementById('countdown').innerHTML = '<div class="countdown-item"><div class="countdown-number">0</div><div class="countdown-label">Дней</div></div><div class="countdown-item"><div class="countdown-number">0</div><div class="countdown-label">Часов</div></div><div class="countdown-item"><div class="countdown-number">0</div><div class="countdown-label">Минут</div></div><div class="countdown-item"><div class="countdown-number">0</div><div class="countdown-label">Секунд</div></div>';
+            return;
+        }
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (86400000)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (3600000)) / (1000 * 60));
+        const seconds = Math.floor((diff % (60000)) / 1000);
+        document.getElementById('countdown').innerHTML = `
+            <div class="countdown-item"><div class="countdown-number">${days}</div><div class="countdown-label">Дней</div></div>
+            <div class="countdown-item"><div class="countdown-number">${hours}</div><div class="countdown-label">Часов</div></div>
+            <div class="countdown-item"><div class="countdown-number">${minutes}</div><div class="countdown-label">Минут</div></div>
+            <div class="countdown-item"><div class="countdown-number">${seconds}</div><div class="countdown-label">Секунд</div></div>
+        `;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    ymaps.ready(init);
+    function init() {
+        var myMap = new ymaps.Map("map", {
+            center: [60.0176, 30.3839], // координаты Тихорецкого пр., 3 (приблизительно)
+            zoom: 16,
+            controls: ['zoomControl', 'fullscreenControl']
+        });
+        var placemark = new ymaps.Placemark([60.0176, 30.3839], {
+            hintContent: 'Кадетский корпус',
+            balloonContent: 'г. Санкт-Петербург, Тихорецкий пр., 3'
+        });
+        myMap.geoObjects.add(placemark);
+    }
+
+    VanillaTilt.init(document.querySelectorAll('.card, .teacher-card, .parent-card, .methodic-card, .partner-logo'), {
         max: 8,
         speed: 400,
         glare: true,
