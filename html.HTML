@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Кадетский корпус (школа IT‑технологий) | Минобороны России</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -14,10 +15,22 @@
         }
         body {
             font-family: 'Inter', sans-serif;
-            background: #fff;
-            color: #1e1e2f;
+            background: #0a0f1c;
+            color: #eef2ff;
             line-height: 1.5;
             scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        /* Custom scroll */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1f2e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ffcd4a;
+            border-radius: 10px;
         }
         .container {
             max-width: 1280px;
@@ -26,11 +39,12 @@
         }
         /* Header */
         header {
-            background: #0a1a2f;
+            background: rgba(10, 15, 28, 0.95);
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(255, 205, 74, 0.3);
         }
         .header-flex {
             display: flex;
@@ -40,31 +54,32 @@
             flex-wrap: wrap;
         }
         .logo h1 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #ffcd4a;
-            letter-spacing: 1px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffcd4a, #ffa500);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         .logo p {
-            font-size: 0.75rem;
-            color: #ccddee;
-            margin-top: 4px;
+            font-size: 0.7rem;
+            color: #b9c7d9;
+            letter-spacing: 1px;
         }
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 28px;
             list-style: none;
-            align-items: center;
         }
         .nav-links a {
             text-decoration: none;
             color: #f0f4fa;
             font-weight: 500;
             transition: 0.3s;
-            font-size: 0.95rem;
         }
         .nav-links a:hover {
             color: #ffcd4a;
+            text-shadow: 0 0 5px rgba(255,205,74,0.5);
         }
         .dropdown {
             position: relative;
@@ -72,14 +87,15 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background: #0a1a2f;
+            background: #0f1422;
             min-width: 280px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
             z-index: 1;
             border-radius: 12px;
             padding: 8px 0;
             top: 100%;
             left: 0;
+            backdrop-filter: blur(8px);
         }
         .dropdown-content a {
             display: block;
@@ -88,7 +104,7 @@
             font-size: 0.85rem;
         }
         .dropdown-content a:hover {
-            background: #1e3a5f;
+            background: rgba(255,205,74,0.2);
             color: #ffcd4a;
         }
         .dropdown:hover .dropdown-content {
@@ -100,11 +116,29 @@
             color: #ffcd4a;
             cursor: pointer;
         }
-        /* Hero */
+        /* Hero с движением мыши */
         .hero {
-            background: linear-gradient(135deg, #0a1a2f 0%, #1e3a5f 100%);
-            color: white;
-            padding: 80px 0;
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: radial-gradient(circle at 30% 40%, #0a1a2f, #03060c);
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://via.placeholder.com/1920x1080?text=Кадеты+на+занятии') center/cover no-repeat;
+            opacity: 0.15;
+            z-index: 0;
+            transition: transform 0.1s ease-out;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 2;
         }
         .hero-grid {
             display: flex;
@@ -141,6 +175,8 @@
             font-weight: 600;
             text-decoration: none;
             transition: 0.3s;
+            cursor: pointer;
+            border: none;
         }
         .btn-primary {
             background: #ffcd4a;
@@ -148,28 +184,32 @@
         }
         .btn-primary:hover {
             background: #e0b33b;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         .btn-outline {
             border: 2px solid #ffcd4a;
             color: #ffcd4a;
+            background: transparent;
         }
         .btn-outline:hover {
             background: #ffcd4a;
             color: #0a1a2f;
         }
-        .hero-image {
+        .hero-video {
             flex: 1;
-            text-align: center;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.5);
         }
-        .hero-image img {
-            max-width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+        .hero-video iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
         }
         /* Stats */
         .stats {
-            background: #f8fafc;
+            background: #0f1422;
             padding: 60px 0;
         }
         .stats-grid {
@@ -186,23 +226,26 @@
         .stat-number {
             font-size: 2.5rem;
             font-weight: 800;
-            color: #0a1a2f;
+            color: #ffcd4a;
         }
         .stat-label {
             font-size: 1rem;
-            color: #2c3e50;
+            color: #ccd6f0;
             font-weight: 500;
         }
         /* Sections */
         .section {
             padding: 80px 0;
         }
+        .section:nth-child(even) {
+            background: #0f1422;
+        }
         .section-title {
             text-align: center;
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 50px;
-            color: #0a1a2f;
+            color: #fff;
         }
         .section-title:after {
             content: '';
@@ -218,37 +261,32 @@
             gap: 30px;
         }
         .card {
-            background: #fff;
+            background: rgba(20, 28, 44, 0.8);
+            backdrop-filter: blur(4px);
             border-radius: 24px;
-            padding: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            border: 1px solid #eef2f6;
-            transition: 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: #ffcd4a;
-            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+            padding: 28px;
+            border: 1px solid rgba(255,205,74,0.2);
+            transition: all 0.3s ease;
         }
         .card i {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: #ffcd4a;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
         .card h3 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             margin-bottom: 12px;
         }
         .card ul {
             margin-left: 20px;
-            color: #4b5563;
+            color: #ccd6f0;
         }
         .bg-light {
-            background: #f8fafc;
+            background: #0a0f1c;
         }
         .badge {
-            background: #ffcd4a20;
-            color: #0a1a2f;
+            background: rgba(255,205,74,0.2);
+            color: #ffcd4a;
             border-radius: 20px;
             padding: 4px 12px;
             font-size: 0.7rem;
@@ -262,19 +300,18 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            background: #fff;
+            background: #0f1422;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
         }
         th, td {
             padding: 12px 16px;
             text-align: left;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid #2a2f3f;
         }
         th {
-            background: #0a1a2f;
-            color: #fff;
+            background: #1e2538;
+            color: #ffcd4a;
             font-weight: 600;
         }
         .subjects-list {
@@ -285,17 +322,18 @@
             margin-top: 20px;
         }
         .subject-tag {
-            background: #eef2f6;
+            background: rgba(255,205,74,0.15);
             border-radius: 40px;
             padding: 8px 20px;
             font-weight: 500;
+            color: #ffcd4a;
         }
         .teacher-category {
             margin-bottom: 40px;
         }
         .teacher-category h3 {
             font-size: 1.6rem;
-            color: #0a1a2f;
+            color: #ffcd4a;
             border-left: 4px solid #ffcd4a;
             padding-left: 20px;
             margin-bottom: 20px;
@@ -306,11 +344,11 @@
             gap: 24px;
         }
         .teacher-card {
-            background: #fff;
+            background: rgba(20, 28, 44, 0.8);
             border-radius: 20px;
             padding: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid #eef2f6;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,205,74,0.2);
             transition: 0.2s;
         }
         .teacher-card:hover {
@@ -318,21 +356,20 @@
             border-color: #ffcd4a;
         }
         .teacher-card h4 {
-            color: #0a1a2f;
+            color: #fff;
             font-size: 1.2rem;
             margin-bottom: 6px;
         }
         .teacher-card .position {
-            color: #c9a03d;
+            color: #ffcd4a;
             font-weight: 600;
             font-size: 0.85rem;
             margin-bottom: 8px;
         }
         .teacher-card .details {
             font-size: 0.85rem;
-            color: #4b5563;
+            color: #ccd6f0;
             margin-top: 8px;
-            line-height: 1.4;
         }
         .parent-grid {
             display: grid;
@@ -341,25 +378,26 @@
             margin-bottom: 40px;
         }
         .parent-card {
-            border: 1px solid #eef2f6;
+            background: rgba(20, 28, 44, 0.8);
             border-radius: 24px;
             overflow: hidden;
-            background: #fff;
+            border: 1px solid rgba(255,205,74,0.2);
             transition: 0.2s;
         }
         .parent-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-color: #ffcd4a;
         }
         .parent-card-header {
-            background: #f8fafc;
+            background: #0f1422;
             padding: 20px;
             font-weight: 700;
             font-size: 1.2rem;
-            border-bottom: 1px solid #eef2f6;
+            border-bottom: 1px solid rgba(255,205,74,0.2);
             display: flex;
             align-items: center;
             gap: 12px;
+            color: #ffcd4a;
         }
         .parent-card-header i {
             color: #ffcd4a;
@@ -368,11 +406,6 @@
         .parent-card-body {
             padding: 20px;
         }
-        .parent-card-body ul {
-            margin-left: 20px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
         .methodics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -380,28 +413,25 @@
             margin-top: 30px;
         }
         .methodic-card {
-            border: 1px solid #eef2f6;
+            background: rgba(20, 28, 44, 0.8);
             border-radius: 24px;
             overflow: hidden;
-            transition: 0.2s;
-        }
-        .methodic-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,205,74,0.2);
         }
         .methodic-header {
-            background: #f8fafc;
+            background: #0f1422;
             padding: 20px;
             font-weight: 700;
             font-size: 1.2rem;
-            border-bottom: 1px solid #eef2f6;
+            border-bottom: 1px solid rgba(255,205,74,0.2);
+            color: #ffcd4a;
         }
         .methodic-body {
             padding: 20px;
         }
         .btn-download {
-            background: #ffcd4a20;
-            color: #0a1a2f;
+            background: rgba(255,205,74,0.2);
+            color: #ffcd4a;
             padding: 6px 12px;
             border-radius: 30px;
             font-size: 0.8rem;
@@ -413,11 +443,10 @@
             transition: 0.2s;
         }
         .btn-download:hover {
-            background: #ffcd4a40;
+            background: rgba(255,205,74,0.4);
         }
         .contact-form {
-            background: #0a1a2f;
-            color: white;
+            background: #0f1422;
             padding: 60px 0;
         }
         .form-grid {
@@ -430,10 +459,10 @@
             width: 100%;
             padding: 14px 18px;
             border-radius: 12px;
-            border: none;
+            border: 1px solid rgba(255,205,74,0.3);
             font-family: inherit;
             margin-bottom: 16px;
-            background: #1e2a3a;
+            background: #1a1f2e;
             color: white;
         }
         input::placeholder, textarea::placeholder {
@@ -454,17 +483,16 @@
             transform: scale(1.02);
         }
         footer {
-            background: #041224;
-            color: #ccddee;
+            background: #03060c;
             padding: 40px 0;
             text-align: center;
+            border-top: 1px solid rgba(255,205,74,0.2);
         }
         .footer-links a {
             color: #ffcd4a;
             text-decoration: none;
             margin: 0 15px;
         }
-        /* Back to top button */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -488,16 +516,48 @@
             opacity: 1;
             visibility: visible;
         }
-        .back-to-top:hover {
-            background: #e0b33b;
-            transform: translateY(-3px);
+        /* Шторка (выезжающая панель) */
+        .curtain {
+            position: fixed;
+            bottom: -400px;
+            left: 0;
+            width: 100%;
+            background: #0f1422;
+            border-top: 3px solid #ffcd4a;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+            transition: bottom 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            z-index: 1000;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .curtain.open {
+            bottom: 0;
+        }
+        .curtain .close-curtain {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #ffcd4a;
+        }
+        .curtain h3 {
+            color: #ffcd4a;
+            margin-bottom: 20px;
+        }
+        .curtain p {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .curtain .btn {
+            margin-top: 20px;
         }
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
                 flex-direction: column;
                 width: 100%;
-                background: #0a1a2f;
+                background: #0a0f1c;
                 padding: 20px;
                 position: absolute;
                 top: 80px;
@@ -534,6 +594,7 @@
     </style>
 </head>
 <body>
+
 <header>
     <div class="container header-flex">
         <div class="logo"><h1>КИТШ</h1><p>Кадетский корпус (школа IT‑технологий)</p></div>
@@ -571,19 +632,34 @@
 </header>
 
 <main>
+    <!-- Hero с движением мыши и видео -->
     <section id="home" class="hero">
-        <div class="container hero-grid">
-            <div class="hero-text">
-                <h1>Стань кадетом – <span>сдай ЕГЭ на 90+</span><br>и поступи в лучший вуз</h1>
-                <p>10-11 классы с углублённой физикой, математикой и IT. Полный пансион, форма, стипендия. Набор – 40 юношей в год.</p>
-                <div class="btn-group">
-                    <a href="#admission" class="btn btn-primary">Подать заявку</a>
-                    <a href="#about" class="btn btn-outline">О школе</a>
+        <div class="hero-bg" id="heroBg" style="left: 3px; top: 80px; transform: translate(12.7952px, 4.55249px);"></div>
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1>Стань кадетом – <span>сдай ЕГЭ на 90+</span><br>и поступи в лучший вуз</h1>
+                    <p>10-11 классы с углублённой физикой, математикой и IT. Полный пансион, форма, стипендия. Набор – 40 юношей в год.</p>
+                    <div class="btn-group">
+                        <a href="#admission" class="btn btn-primary">Подать заявку</a>
+                        <button class="btn btn-outline" id="openCurtainBtn">Важная информация</button>
+                    </div>
+                </div>
+                <div class="hero-video">
+                    <!-- Замените src на реальное видео кадетского корпуса -->
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=abc" title="Видео о кадетском корпусе" allowfullscreen></iframe>
                 </div>
             </div>
-            <div class="hero-image"><img src="https://via.placeholder.com/500x400?text=Кадеты+на+занятии" alt="Кадеты"></div>
         </div>
     </section>
+
+    <!-- Шторка (выезжающая панель) -->
+    <div id="curtain" class="curtain">
+        <div class="close-curtain" id="closeCurtain">&times;</div>
+        <h3><i class="fas fa-info-circle"></i> Уважаемые родители и абитуриенты!</h3>
+        <p>Приём документов на 2026/2027 учебный год начинается с 1 апреля. Не упустите возможность подать заявку! Вступительные испытания пройдут в июле. Подробности в разделе «Поступающим».</p>
+        <button class="btn btn-primary" onclick="document.getElementById('admission').scrollIntoView({behavior:'smooth'}); document.getElementById('curtain').classList.remove('open');">Перейти к поступлению</button>
+    </div>
 
     <section class="stats">
         <div class="container stats-grid">
@@ -755,9 +831,12 @@
 <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
 
 <script>
+    // Мобильное меню
     const mobileBtn = document.getElementById('mobileMenu');
     const nav = document.getElementById('navLinks');
     mobileBtn?.addEventListener('click', () => nav.classList.toggle('active'));
+    
+    // Плавный скролл
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href').substring(1);
@@ -770,19 +849,58 @@
             }
         });
     });
+    
+    // Форма обратной связи
     const form = document.getElementById('callbackForm');
-    form?.addEventListener('submit', (e) => { e.preventDefault(); alert('Спасибо! Ваша заявка принята. Мы свяжемся с вами.'); form.reset(); });
+    form?.addEventListener('submit', (e) => { 
+        e.preventDefault(); 
+        alert('Спасибо! Ваша заявка принята. Мы свяжемся с вами.'); 
+        form.reset(); 
+    });
+    
+    // Демо-скачивание
     document.querySelectorAll('.btn-download').forEach(btn => {
         btn.addEventListener('click', () => alert('Демонстрационная версия материалов. Полный файл можно запросить в учебной части.'));
     });
-    // Back to top
+    
+    // Кнопка наверх
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) backToTop.classList.add('show');
         else backToTop.classList.remove('show');
     });
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    
+    // Эффект движения мыши для фона hero
+    const heroBg = document.getElementById('heroBg');
+    const heroSection = document.querySelector('.hero');
+    heroSection?.addEventListener('mousemove', (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        if (heroBg) {
+            heroBg.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+        }
+    });
+    
+    // 3D tilt для карточек
+    VanillaTilt.init(document.querySelectorAll('.card, .teacher-card, .parent-card, .methodic-card, .contact-card'), {
+        max: 8,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.2,
+    });
+    
+    // Шторка
+    const curtain = document.getElementById('curtain');
+    const openBtn = document.getElementById('openCurtainBtn');
+    const closeBtn = document.getElementById('closeCurtain');
+    openBtn?.addEventListener('click', () => curtain.classList.add('open'));
+    closeBtn?.addEventListener('click', () => curtain.classList.remove('open'));
+    // Закрытие по клику вне шторки (на затемнение нет, но можно по Esc)
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && curtain.classList.contains('open')) {
+            curtain.classList.remove('open');
+        }
     });
 </script>
 </body>
