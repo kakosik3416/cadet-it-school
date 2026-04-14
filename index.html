@@ -20,6 +20,7 @@
             line-height: 1.5;
             scroll-behavior: smooth;
             overflow-x: hidden;
+            padding-top: 12px; /* чтобы контент не заезжал под шапку */
         }
         ::-webkit-scrollbar {
             width: 8px;
@@ -36,19 +37,25 @@
             margin: 0 auto;
             padding: 0 24px;
         }
+        /* Новая плавающая шапка как "шторка" */
         header {
-            background: rgba(10, 15, 28, 0.95);
-            backdrop-filter: blur(12px);
             position: sticky;
-            top: 0;
+            top: 12px;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 205, 74, 0.3);
+            width: calc(100% - 24px);
+            margin: 0 12px;
+            background: rgba(10, 15, 28, 0.85);
+            backdrop-filter: blur(16px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 205, 74, 0.25);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
         }
         .header-flex {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 0;
+            padding: 12px 24px;
             flex-wrap: wrap;
         }
         .logo h1 {
@@ -114,6 +121,7 @@
             color: #ffcd4a;
             cursor: pointer;
         }
+        /* Остальные стили без изменений */
         .hero {
             position: relative;
             min-height: 90vh;
@@ -546,7 +554,28 @@
         .curtain .btn {
             margin-top: 20px;
         }
+        .table-summary {
+            background: rgba(255,205,74,0.1);
+            border-radius: 16px;
+            padding: 12px 16px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            border-left: 3px solid #ffcd4a;
+        }
+        .table-wrapper h4 {
+            color: #ffcd4a;
+            margin: 20px 0 10px 0;
+            font-size: 1.2rem;
+        }
         @media (max-width: 768px) {
+            header {
+                width: calc(100% - 16px);
+                margin: 0 8px;
+                top: 8px;
+            }
+            .header-flex {
+                padding: 10px 16px;
+            }
             .nav-links {
                 display: none;
                 flex-direction: column;
@@ -554,9 +583,10 @@
                 background: #0a0f1c;
                 padding: 20px;
                 position: absolute;
-                top: 80px;
+                top: 70px;
                 left: 0;
                 gap: 15px;
+                border-radius: 20px;
             }
             .nav-links.active {
                 display: flex;
@@ -590,7 +620,7 @@
 <body>
 
 <header>
-    <div class="container header-flex">
+    <div class="header-flex">
         <div class="logo"><h1>КИТШ</h1><p>Кадетский корпус (школа IT‑технологий)</p></div>
         <div class="mobile-menu" id="mobileMenu"><i class="fas fa-bars"></i></div>
         <ul class="nav-links" id="navLinks">
@@ -636,7 +666,6 @@
                     </div>
                 </div>
                 <div class="hero-video">
-                    <!-- Замените src на реальное видео кадетского корпуса -->
                     <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=abc" title="Видео о кадетском корпусе" allowfullscreen></iframe>
                 </div>
             </div>
@@ -708,17 +737,38 @@
                 <p><strong>Внимание:</strong> С 2014 года в аудиториях ведётся видеонаблюдение. Нарушения фиксируются, результаты могут быть аннулированы.</p>
             </div>
             <div class="card">
-                <i class="fas fa-star-of-life"></i><h3>Результаты ЕГЭ выпускников</h3>
-                <div class="table-wrapper"><h4>2025 год</h4></div>table><thead><tr><th>Предмет</th><th>Участников</th><th>%</th><th>Мин. балл</th><th>Макс. балл</th><th>Средний балл</th></tr></thead><tbody><tr><td>Русский язык</td><td>39</td><td>100%</td><td>36</td><td>94</td><td>74,7</td></tr>
-                <tr><td>Математика (профиль)</td><td>39</td><td>100%</td><td>27</td><td>99</td><td>80,1</td></tr>
-                <tr><td>Физика</td><td>38</td><td>97,4%</td><td>36</td><td>96</td><td>74,5</td></tr>
-                <tr><td>Информатика</td><td>9</td><td>23,1%</td><td>40</td><td>100</td><td>89,8</td></tr>
-                </tbody></table><p>✔ Выпускников: 39, аттестат получили 100%. С отличием I степени – 20,5%, II степени – 23,1%. 240+ баллов – 45,2%.</p></div>
-                <div class="table-wrapper"><h4>2024 год</h4></table><thead><tr><th>Предмет</th><th>Участников</th><th>%</th><th>Мин. балл</th><th>Макс. балл</th><th>Средний балл</th></tr></thead><tbody><tr><td>Русский язык</td><td>39</td><td>100%</td><td>36</td><td>97</td><td>81,4</td></tr>
-                <tr><td>Математика (профиль)</td><td>39</td><td>100%</td><td>27</td><td>100</td><td>84,7</td></tr>
-                <tr><td>Физика</td><td>39</td><td>100%</td><td>36</td><td>100</td><td>82,5</td></tr>
-                <tr><td>Информатика</td><td>10</td><td>25,6%</td><td>40</td><td>100</td><td>85,0</td></tr>
-                </tbody></table><p>✔ Выпускников: 39, аттестат с отличием I степени – 20,5%, II степени – 18,0%. 240+ баллов – 89,7%.</p></div>
+                <i class="fas fa-star-of-life"></i>
+                <h3>Результаты ЕГЭ выпускников</h3>
+                <div class="table-wrapper">
+                    <h4>2025 год</h4>
+                    <table>
+                        <thead>
+                            <tr><th scope="col">Предмет</th><th scope="col">Участников</th><th scope="col">%</th><th scope="col">Мин. балл</th><th scope="col">Макс. балл</th><th scope="col">Средний балл</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Русский язык</td><td>39</td><td>100%</td><td>36</td><td>94</td><td>74,7</td></tr>
+                            <tr><td>Математика (профиль)</td><td>39</td><td>100%</td><td>27</td><td>99</td><td>80,1</td></tr>
+                            <tr><td>Физика</td><td>38</td><td>97,4%</td><td>36</td><td>96</td><td>74,5</td></tr>
+                            <tr><td>Информатика</td><td>9</td><td>23,1%</td><td>40</td><td>100</td><td>89,8</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="table-summary">✔ Выпускников: 39, аттестат получили 100%. С отличием I степени – 20,5%, II степени – 23,1%. 240+ баллов – 45,2%.</div>
+                </div>
+                <div class="table-wrapper">
+                    <h4>2024 год</h4>
+                    <table>
+                        <thead>
+                            <tr><th scope="col">Предмет</th><th scope="col">Участников</th><th scope="col">%</th><th scope="col">Мин. балл</th><th scope="col">Макс. балл</th><th scope="col">Средний балл</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Русский язык</td><td>39</td><td>100%</td><td>36</td><td>97</td><td>81,4</td></tr>
+                            <tr><td>Математика (профиль)</td><td>39</td><td>100%</td><td>27</td><td>100</td><td>84,7</td></tr>
+                            <tr><td>Физика</td><td>39</td><td>100%</td><td>36</td><td>100</td><td>82,5</td></tr>
+                            <tr><td>Информатика</td><td>10</td><td>25,6%</td><td>40</td><td>100</td><td>85,0</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="table-summary">✔ Выпускников: 39, аттестат с отличием I степени – 20,5%, II степени – 18,0%. 240+ баллов – 89,7%.</div>
+                </div>
             </div>
         </div>
     </section>
@@ -739,15 +789,20 @@
                 </div>
             </div>
             <div class="card" style="margin-top:30px;"><i class="fas fa-running"></i><h3>Нормативы физической подготовленности</h3>
-                <div class="table-wrapper"><table><thead><tr><th>Упражнение</th><th>Класс</th><th>«отл»</th><th>«хор»</th><th>«удовл»</th></tr></thead><tbody>
-                <tr><td rowspan="2">Бег 100 м (сек)</td><td>10 кл</td><td>14,2</td><td>14,6</td><td>15,2</td></tr>
-                <tr><td>11 кл</td><td>14,0</td><td>14,4</td><td>15,0</td></tr>
-                <tr><td rowspan="2">Подтягивание (раз)</td><td>10 кл</td><td>12</td><td>11</td><td>9</td></tr>
-                <tr><td>11 кл</td><td>13</td><td>12</td><td>10</td></tr>
-                <tr><td rowspan="2">Бег 1000 м (мин,с)</td><td>10 кл</td><td>3.35</td><td>3.45</td><td>4.10</td></tr>
-                <tr><td>11 кл</td><td>3.30</td><td>3.40</td><td>4.05</td></tr>
-                </tbody></table>
-                <p>Оценка уровня физической подготовленности определяется по сумме трёх упражнений.</p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Упражнение</th><th>Класс</th><th>«отл»</th><th>«хор»</th><th>«удовл»</th></tr></thead>
+                        <tbody>
+                            <tr><td rowspan="2">Бег 100 м (сек)</td><td>10 кл</td><td>14,2</td><td>14,6</td><td>15,2</td></tr>
+                            <tr><td>11 кл</td><td>14,0</td><td>14,4</td><td>15,0</td></tr>
+                            <tr><td rowspan="2">Подтягивание (раз)</td><td>10 кл</td><td>12</td><td>11</td><td>9</td></tr>
+                            <tr><td>11 кл</td><td>13</td><td>12</td><td>10</td></tr>
+                            <tr><td rowspan="2">Бег 1000 м (мин,с)</td><td>10 кл</td><td>3.35</td><td>3.45</td><td>4.10</td></tr>
+                            <tr><td>11 кл</td><td>3.30</td><td>3.40</td><td>4.05</td></tr>
+                        </tbody>
+                    </table>
+                    <p>Оценка уровня физической подготовленности определяется по сумме трёх упражнений.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -778,13 +833,20 @@
                 <div class="parent-card"><div class="parent-card-header"><i class="fas fa-users"></i> Родительский комитет</div><div class="parent-card-body"><p>Контакт: заместитель по воспитательной работе Воронов Д.А. Приглашаются активные родители для участия в жизни школы.</p></div></div>
                 <div class="parent-card"><div class="parent-card-header"><i class="fas fa-microchip"></i> Дополнительное образование</div><div class="parent-card-body"><p>Лаборатории робототехники, сетевых технологий, БПЛА, 3D-центр. Спортсекции: плавание, стрельба, игровые виды. Творчество: вокал, журналистика, актёрское мастерство.</p></div></div>
             </div>
-            <div class="card"><i class="fas fa-calendar-alt"></i><h3>Учебный процесс и каникулы (2025–2026 уч. год)</h3><div class="table-wrapper"><table><thead><tr><th>Период</th><th>Даты</th></tr></thead><tbody><tr><td>I полугодие</td><td>01.09 – 28.10</td></tr>
-                <tr><td>Осенние каникулы</td><td>29.10 – 06.11</td></tr>
-                <tr><td>II полугодие</td><td>10.01 – 27.03</td></tr>
-                <tr><td>Весенние каникулы</td><td>28.03 – 03.04</td></tr>
-                <tr><td>Зимняя зачётная неделя</td><td>18.12 – 23.12</td></tr>
-                <tr><td>Летняя учебная практика</td><td>31.05 – 15.06</td></tr>
-                </tbody></table><p><strong>Важно:</strong> билеты на каникулы приобретать только после согласования с администрацией школы.</p></div>
+            <div class="card"><i class="fas fa-calendar-alt"></i><h3>Учебный процесс и каникулы (2025–2026 уч. год)</h3><div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Период</th><th>Даты</th></tr></thead>
+                    <tbody>
+                        <tr><td>I полугодие</td><td>01.09 – 28.10</td></tr>
+                        <tr><td>Осенние каникулы</td><td>29.10 – 06.11</td></tr>
+                        <tr><td>II полугодие</td><td>10.01 – 27.03</td></tr>
+                        <tr><td>Весенние каникулы</td><td>28.03 – 03.04</td></tr>
+                        <tr><td>Зимняя зачётная неделя</td><td>18.12 – 23.12</td></tr>
+                        <tr><td>Летняя учебная практика</td><td>31.05 – 15.06</td></tr>
+                    </tbody>
+                </table>
+                <p><strong>Важно:</strong> билеты на каникулы приобретать только после согласования с администрацией школы.</p>
+            </div></div>
         </div>
     </section>
 
@@ -870,7 +932,6 @@
         }
     });
 
-    // 3D tilt для карточек (убрал .contact-card, которого нет)
     VanillaTilt.init(document.querySelectorAll('.card, .teacher-card, .parent-card, .methodic-card'), {
         max: 8,
         speed: 400,
