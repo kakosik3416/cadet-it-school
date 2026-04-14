@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш_ключ&lang=ru_RU" type="text/javascript"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=94fdc23b-e2d3-49c7-bbe1-36f05fc24abe&lang=ru_RU" type="text/javascript"></script>
     <style>
         * {
             margin: 0;
@@ -54,6 +54,7 @@
             align-items: center;
             padding: 12px 24px;
             flex-wrap: wrap;
+            gap: 15px;
         }
         .logo {
             display: flex;
@@ -63,20 +64,10 @@
         .logo img {
             height: 50px;
             width: auto;
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease;
         }
-        /* Глитч-эффект на логотип */
         .logo img:hover {
-            filter: drop-shadow(2px 0 red) drop-shadow(-2px 0 cyan);
-            animation: glitch 0.3s infinite;
-        }
-        @keyframes glitch {
-            0% { transform: skew(0deg, 0deg); }
-            20% { transform: skew(2deg, 1deg); }
-            40% { transform: skew(-2deg, -1deg); }
-            60% { transform: skew(1deg, 0deg); }
-            80% { transform: skew(-1deg, 1deg); }
-            100% { transform: skew(0deg, 0deg); }
+            transform: scale(1.02);
         }
         .logo p {
             font-size: 0.7rem;
@@ -89,6 +80,7 @@
             gap: 28px;
             list-style: none;
             align-items: center;
+            flex-wrap: wrap;
         }
         .nav-links a {
             text-decoration: none;
@@ -113,6 +105,33 @@
         .call-btn:hover {
             background: #e0b33b;
             transform: scale(1.02);
+        }
+        .header-countdown {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            background: rgba(0,0,0,0.4);
+            border-radius: 16px;
+            padding: 4px 12px;
+            border-left: 2px solid #ffcd4a;
+        }
+        .header-countdown-label {
+            font-size: 0.65rem;
+            color: #ffcd4a;
+            white-space: nowrap;
+        }
+        .header-countdown-timer {
+            display: flex;
+            gap: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .header-countdown-timer span {
+            background: #0a0f1c;
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 1.1rem;
         }
         .mobile-menu {
             display: none;
@@ -243,38 +262,6 @@
             transform: translateY(0);
         }
 
-        /* СЧЁТЧИК */
-        .countdown {
-            background: #0f1422;
-            padding: 30px 0;
-            text-align: center;
-            border-bottom: 1px solid rgba(255,205,74,0.2);
-        }
-        .countdown-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        .countdown-item {
-            background: rgba(20,28,44,0.9);
-            border-radius: 20px;
-            padding: 15px 25px;
-            min-width: 100px;
-            border: 1px solid rgba(255,205,74,0.4);
-        }
-        .countdown-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #ffcd4a;
-            line-height: 1;
-        }
-        .countdown-label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
         /* КАРТА */
         .map-container {
             height: 400px;
@@ -288,11 +275,12 @@
             height: 100%;
         }
 
-        /* ПАРТНЁРЫ */
+        /* ПАРТНЁРЫ (только два блока) */
         .partners-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
             gap: 40px;
             margin-top: 40px;
         }
@@ -303,6 +291,12 @@
             transition: all 0.3s;
             border: 1px solid rgba(255,205,74,0.2);
             cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
         }
         .partner-logo:hover {
             transform: translateY(-5px);
@@ -310,18 +304,24 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
         .partner-logo img {
+            max-width: 80px;
             max-height: 60px;
             width: auto;
             filter: brightness(0) invert(1);
-            opacity: 0.7;
+            opacity: 0.8;
             transition: 0.3s;
         }
         .partner-logo:hover img {
             opacity: 1;
             filter: none;
         }
+        .partner-logo span {
+            color: #ffcd4a;
+            font-weight: 600;
+            font-size: 1rem;
+        }
 
-        /* ОСТАЛЬНЫЕ СТИЛИ (без изменений) */
+        /* ОСТАЛЬНЫЕ СТИЛИ */
         .stats { background: #0f1422; padding: 60px 0; }
         .stats-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; text-align: center; }
         .stat-card { flex: 1; min-width: 160px; }
@@ -384,8 +384,8 @@
         .table-wrapper h4 { color: #ffcd4a; margin: 20px 0 10px 0; font-size: 1.2rem; }
         @media (max-width: 768px) {
             header { width: calc(100% - 16px); margin: 0 8px; top: 8px; }
-            .header-flex { padding: 10px 16px; }
-            .nav-links { display: none; flex-direction: column; width: 100%; background: #0a0f1c; padding: 20px; position: absolute; top: 70px; left: 0; gap: 15px; border-radius: 20px; }
+            .header-flex { padding: 10px 16px; flex-direction: column; align-items: stretch; }
+            .nav-links { display: none; flex-direction: column; width: 100%; background: #0a0f1c; padding: 20px; position: absolute; top: 100%; left: 0; gap: 15px; border-radius: 20px; margin-top: 10px; }
             .nav-links.active { display: flex; }
             .mobile-menu { display: block; }
             .dropdown-content { position: static; box-shadow: none; padding-left: 20px; }
@@ -394,11 +394,11 @@
             .stats-grid { flex-direction: column; }
             .teacher-grid { grid-template-columns: 1fr; }
             .parent-grid { grid-template-columns: 1fr; }
-            .countdown-container { gap: 15px; }
-            .countdown-item { padding: 10px 15px; min-width: 70px; }
-            .countdown-number { font-size: 1.5rem; }
-            .logo img { height: 40px; }
-            .logo p { font-size: 0.6rem; max-width: 140px; }
+            .header-countdown { align-self: flex-end; margin-top: 5px; }
+            .header-countdown-label { font-size: 0.55rem; }
+            .header-countdown-timer { gap: 4px; font-size: 0.8rem; }
+            .partners-grid { gap: 20px; }
+            .partner-logo { padding: 15px 20px; }
         }
     </style>
 </head>
@@ -438,11 +438,16 @@
             <li><a href="#contacts">Контакты</a></li>
             <li><a href="tel:+78122479866" class="call-btn"><i class="fas fa-phone-alt"></i> <span>Позвонить</span></a></li>
         </ul>
+        <div class="header-countdown" id="headerCountdown">
+            <div class="header-countdown-label">Оставшееся время до окончания приёма</div>
+            <div class="header-countdown-timer" id="headerTimer">
+                <span>0</span>д <span>0</span>ч <span>0</span>м <span>0</span>с
+            </div>
+        </div>
     </div>
 </header>
 
 <main>
-    <!-- Hero с видео-фоном -->
     <section id="home" class="hero">
         <video class="hero-video-bg" autoplay muted loop playsinline poster="https://via.placeholder.com/1920x1080?text=Кадеты">
             <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
@@ -464,14 +469,6 @@
         </div>
     </section>
 
-    <!-- Счётчик дней до окончания приёма -->
-    <div class="countdown">
-        <div class="container">
-            <div class="countdown-container" id="countdown"></div>
-        </div>
-    </div>
-
-    <!-- Шторка -->
     <div id="curtain" class="curtain">
         <div class="close-curtain" id="closeCurtain">&times;</div>
         <h3><i class="fas fa-info-circle"></i> Уважаемые родители и абитуриенты!</h3>
@@ -479,7 +476,6 @@
         <button class="btn btn-primary" onclick="document.getElementById('admission').scrollIntoView({behavior:'smooth'}); document.getElementById('curtain').classList.remove('open');">Перейти к поступлению</button>
     </div>
 
-    <!-- Статистика -->
     <section class="stats fade-up">
         <div class="container stats-grid">
             <div class="stat-card"><div class="stat-number">80</div><div class="stat-label">Кадет (10-11 классы)</div></div>
@@ -489,7 +485,6 @@
         </div>
     </section>
 
-    <!-- О кадетском корпусе -->
     <section id="about" class="section fade-up">
         <div class="container">
             <h2 class="section-title">О кадетском корпусе</h2>
@@ -502,7 +497,7 @@
         </div>
     </section>
 
-    <!-- Сведения об ОО (все подразделы) – адрес обновлён -->
+    <!-- Сведения об ОО -->
     <section id="basic-info" class="section bg-light fade-up"><div class="container"><h2 class="section-title">Основные сведения</h2><div class="card"><i class="fas fa-building"></i><h3>Полное наименование</h3><p>Кадетский корпус (школа IT-технологий) Федерального государственного казенного военного образовательного учреждения высшего образования «Военная орденов Жукова и Ленина Краснознаменная академия связи имени Маршала Советского Союза С.М. Буденного» Министерства обороны Российской Федерации</p><p><strong>Сокращённое наименование:</strong> Школа IT-технологий</p><p><strong>Учредитель:</strong> Российская Федерация, Министерство обороны РФ</p><p><strong>Адрес:</strong> 194064, г. Санкт-Петербург, Тихорецкий пр., д. 3</p><p><strong>Режим работы:</strong> круглосуточно</p><p><strong>Телефон:</strong> 8 (812) 247-98-66</p><p><strong>E-mail:</strong> sch-vasit@mil.ru</p><p><strong>Сайт:</strong> itschool.mil.ru</p></div></div></section>
     <section id="history" class="section fade-up"><div class="container"><h2 class="section-title">История</h2><div class="card"><i class="fas fa-history"></i><p>Кадетский корпус (школа IT-технологий) создан в соответствии с решением Министра обороны РФ от 31 октября 2014 года. Открыт 1 сентября 2015 года на базе Военной академии связи им. Маршала Советского Союза С.М. Буденного.</p></div></div></section>
     <section id="structure" class="section bg-light fade-up"><div class="container"><h2 class="section-title">Структура и органы управления</h2><div class="card"><i class="fas fa-sitemap"></i><p>Управление осуществляет начальник Кадетского корпуса. В составе: учебный отдел, воспитательный отдел, педагогический совет, родительский комитет. Структурные подразделения: кафедры академии, лаборатории, медицинский пункт.</p></div></div></section>
@@ -546,7 +541,7 @@
                 <tr><td>Физика</td><td>38</td><td>97,4%</td><td>36</td><td>96</td><td>74,5</td></tr>
                 <tr><td>Информатика</td><td>9</td><td>23,1%</td><td>40</td><td>100</td><td>89,8</td></tr>
                 </tbody></table><div class="table-summary">✔ Выпускников: 39, аттестат получили 100%. С отличием I степени – 20,5%, II степени – 23,1%. 240+ баллов – 45,2%.</div></div>
-                <div class="table-wrapper"><h4>2024 год</h4><table><thead><tr><th scope="col">Предмет</th><th scope="col">Участников</th><th scope="col">%</th><th scope="col">Мин. балл</th><th scope="col">Макс. балл</th><th scope="col">Средний балл</th></tr></thead><tbody>
+                <div class="table-wrapper"><h4>2024 год</h4><td><thead><tr><th scope="col">Предмет</th><th scope="col">Участников</th><th scope="col">%</th><th scope="col">Мин. балл</th><th scope="col">Макс. балл</th><th scope="col">Средний балл</th></tr></thead><tbody>
                 <tr><td>Русский язык</td><td>39</td><td>100%</td><td>36</td><td>97</td><td>81,4</td></tr>
                 <tr><td>Математика (профиль)</td><td>39</td><td>100%</td><td>27</td><td>100</td><td>84,7</td></tr>
                 <tr><td>Физика</td><td>39</td><td>100%</td><td>36</td><td>100</td><td>82,5</td></tr>
@@ -584,7 +579,7 @@
         </div>
     </section>
 
-    <!-- Преподаватели (сокращённо, но полный список) -->
+    <!-- Преподаватели -->
     <section id="teachers" class="section bg-light fade-up">
         <div class="container">
             <h2 class="section-title">Преподаватели и воспитатели</h2>
@@ -598,12 +593,12 @@
         </div>
     </section>
 
-    <!-- Родителям -->
+    <!-- Родителям (ссылки исправлены) -->
     <section id="parents" class="section fade-up">
         <div class="container">
             <h2 class="section-title">Информация для родителей</h2>
             <div class="parent-grid">
-                <div class="parent-card"><div class="parent-card-header"><i class="fas fa-shield-alt"></i> Памятка по информационно-психологической безопасности</div><div class="parent-card-body"><p>Виртуальная угроза в Интернете становится всё опаснее. Обучите ребёнка правилам безопасного поведения. Основные опасности: пропаганда суицидов, порнография, кибербуллинг, фишинг. Полезные ссылки: <a href="#">detionline.com</a>, <a href="#">ya-roditel.ru</a>.</p></div></div>
+                <div class="parent-card"><div class="parent-card-header"><i class="fas fa-shield-alt"></i> Памятка по информационно-психологической безопасности</div><div class="parent-card-body"><p>Виртуальная угроза в Интернете становится всё опаснее. Обучите ребёнка правилам безопасного поведения. Основные опасности: пропаганда суицидов, порнография, кибербуллинг, фишинг. Полезные ссылки: <a href="https://detionline.com" target="_blank" rel="noopener noreferrer">detionline.com</a>, <a href="https://ya-roditel.ru" target="_blank" rel="noopener noreferrer">ya-roditel.ru</a>.</p></div></div>
                 <div class="parent-card"><div class="parent-card-header"><i class="fas fa-clock"></i> Распорядок дня (будни)</div><div class="parent-card-body"><ul><li>07:00 – подъём</li><li>07:10–07:40 – зарядка</li><li>08:05 – завтрак</li><li>08:30–14:00 – учебные занятия</li><li>14:10 – обед</li><li>16:00–19:00 – самоподготовка, кружки, спорт</li><li>19:00 – ужин</li><li>22:00 – отбой</li></ul><p>В выходные – увольнение по заявлению родителей.</p></div></div>
                 <div class="parent-card"><div class="parent-card-header"><i class="fas fa-gavel"></i> Правила внутреннего распорядка</div><div class="parent-card-body"><p>Запрещены: смартфоны, алкоголь, вейпы, самовольный уход. Увольнения – только при отсутствии задолженностей. Запрещённые продукты: колбасные изделия, газировка, торты, чипсы и др.</p></div></div>
                 <div class="parent-card"><div class="parent-card-header"><i class="fas fa-heartbeat"></i> Медицинское сопровождение</div><div class="parent-card-body"><p>Медицинский пункт, договор с поликлиникой, вакцинация, диспансеризация. Лечение в Военно-медицинской академии им. С.М. Кирова.</p></div></div>
@@ -630,15 +625,19 @@
         </div>
     </section>
 
-    <!-- Партнёры -->
+    <!-- Партнёры (только два: Минобороны и ВАС) -->
     <section class="section fade-up">
         <div class="container">
             <h2 class="section-title">Партнёры академии</h2>
             <div class="partners-grid">
-                <div class="partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Ministry_of_Defense_of_the_Russian_Federation_Logo.svg" alt="Минобороны"></div>
-                <div class="partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Russian_Armed_Forces_emblem.svg" alt="ВС РФ"></div>
-                <div class="partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Rostelecom_logo_2016.svg" alt="Ростелеком"></div>
-                <div class="partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Kaspersky_Lab_Logo.svg" alt="Лаборатория Касперского"></div>
+                <a href="https://mil.ru/" target="_blank" rel="noopener noreferrer" class="partner-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Ministry_of_Defense_of_the_Russian_Federation_Logo.svg" alt="Министерство обороны РФ">
+                    <span>Минобороны России</span>
+                </a>
+                <a href="https://xn--80aaghfnfclx0d6jc.xn--p1ai/" target="_blank" rel="noopener noreferrer" class="partner-logo">
+                    <span style="font-size:1.2rem;">🏛️</span>
+                    <span>Военная академия связи</span>
+                </a>
             </div>
         </div>
     </section>
@@ -727,23 +726,20 @@
     fadeElements.forEach(el => observer.observe(el));
 
     function updateCountdown() {
-        const targetDate = new Date(2026, 7, 1);
+        const targetDate = new Date(2026, 7, 1, 23, 59, 59);
         const now = new Date();
         const diff = targetDate - now;
-        if (diff <= 0) {
-            document.getElementById('countdown').innerHTML = '<div class="countdown-item"><div class="countdown-number">0</div><div class="countdown-label">Дней</div></div><div class="countdown-item"><div class="countdown-number">0</div><div class="countdown-label">Часов</div></div><div class="countdown-item"><div class="countdown-number">0</div><div class="countdown-label">Минут</div></div><div class="countdown-item"><div class="countdown-number">0</div><div class="countdown-label">Секунд</div></div>';
-            return;
+        let days = 0, hours = 0, minutes = 0, seconds = 0;
+        if (diff > 0) {
+            days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            hours = Math.floor((diff % (86400000)) / (1000 * 60 * 60));
+            minutes = Math.floor((diff % (3600000)) / (1000 * 60));
+            seconds = Math.floor((diff % (60000)) / 1000);
         }
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (86400000)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (3600000)) / (1000 * 60));
-        const seconds = Math.floor((diff % (60000)) / 1000);
-        document.getElementById('countdown').innerHTML = `
-            <div class="countdown-item"><div class="countdown-number">${days}</div><div class="countdown-label">Дней</div></div>
-            <div class="countdown-item"><div class="countdown-number">${hours}</div><div class="countdown-label">Часов</div></div>
-            <div class="countdown-item"><div class="countdown-number">${minutes}</div><div class="countdown-label">Минут</div></div>
-            <div class="countdown-item"><div class="countdown-number">${seconds}</div><div class="countdown-label">Секунд</div></div>
-        `;
+        const timerSpan = document.getElementById('headerTimer');
+        if (timerSpan) {
+            timerSpan.innerHTML = `<span>${days}</span>д <span>${hours}</span>ч <span>${minutes}</span>м <span>${seconds}</span>с`;
+        }
     }
     updateCountdown();
     setInterval(updateCountdown, 1000);
@@ -751,7 +747,7 @@
     ymaps.ready(init);
     function init() {
         var myMap = new ymaps.Map("map", {
-            center: [60.0176, 30.3839], // координаты Тихорецкого пр., 3 (приблизительно)
+            center: [60.0176, 30.3839],
             zoom: 16,
             controls: ['zoomControl', 'fullscreenControl']
         });
