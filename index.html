@@ -275,7 +275,7 @@
             height: 100%;
         }
 
-        /* ПАРТНЁРЫ (только два блока) */
+        /* ПАРТНЁРЫ */
         .partners-grid {
             display: flex;
             flex-wrap: wrap;
@@ -321,7 +321,7 @@
             font-size: 1rem;
         }
 
-        /* ОСТАЛЬНЫЕ СТИЛИ */
+        /* ОСТАЛЬНЫЕ СТИЛИ (статистика, карточки, таблицы, преподаватели, родителям) */
         .stats { background: #0f1422; padding: 60px 0; }
         .stats-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; text-align: center; }
         .stat-card { flex: 1; min-width: 160px; }
@@ -332,7 +332,7 @@
         .section-title { text-align: center; font-size: 2.2rem; font-weight: 700; margin-bottom: 50px; color: #fff; }
         .section-title:after { content: ''; display: block; width: 80px; height: 3px; background: #ffcd4a; margin: 12px auto 0; }
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .card { background: rgba(20, 28, 44, 0.8); backdrop-filter: blur(4px); border-radius: 24px; padding: 28px; border: 1px solid rgba(255,205,74,0.2); transition: all 0.3s ease; }
+        .card { background: rgba(20,28,44,0.8); backdrop-filter: blur(4px); border-radius: 24px; padding: 28px; border: 1px solid rgba(255,205,74,0.2); transition: all 0.3s ease; }
         .card i { font-size: 2.2rem; color: #ffcd4a; margin-bottom: 18px; }
         .card h3 { font-size: 1.5rem; margin-bottom: 12px; }
         .card ul { margin-left: 20px; color: #ccd6f0; }
@@ -347,19 +347,19 @@
         .teacher-category { margin-bottom: 40px; }
         .teacher-category h3 { font-size: 1.6rem; color: #ffcd4a; border-left: 4px solid #ffcd4a; padding-left: 20px; margin-bottom: 20px; }
         .teacher-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
-        .teacher-card { background: rgba(20, 28, 44, 0.8); border-radius: 20px; padding: 20px; backdrop-filter: blur(4px); border: 1px solid rgba(255,205,74,0.2); transition: 0.2s; }
+        .teacher-card { background: rgba(20,28,44,0.8); border-radius: 20px; padding: 20px; backdrop-filter: blur(4px); border: 1px solid rgba(255,205,74,0.2); transition: 0.2s; }
         .teacher-card:hover { transform: translateY(-3px); border-color: #ffcd4a; }
         .teacher-card h4 { color: #fff; font-size: 1.2rem; margin-bottom: 6px; }
         .teacher-card .position { color: #ffcd4a; font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; }
         .teacher-card .details { font-size: 0.85rem; color: #ccd6f0; margin-top: 8px; }
         .parent-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-bottom: 40px; }
-        .parent-card { background: rgba(20, 28, 44, 0.8); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,205,74,0.2); transition: 0.2s; }
+        .parent-card { background: rgba(20,28,44,0.8); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,205,74,0.2); transition: 0.2s; }
         .parent-card:hover { transform: translateY(-3px); border-color: #ffcd4a; }
         .parent-card-header { background: #0f1422; padding: 20px; font-weight: 700; font-size: 1.2rem; border-bottom: 1px solid rgba(255,205,74,0.2); display: flex; align-items: center; gap: 12px; color: #ffcd4a; }
         .parent-card-header i { color: #ffcd4a; font-size: 1.5rem; }
         .parent-card-body { padding: 20px; }
         .methodics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 30px; }
-        .methodic-card { background: rgba(20, 28, 44, 0.8); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,205,74,0.2); }
+        .methodic-card { background: rgba(20,28,44,0.8); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,205,74,0.2); }
         .methodic-header { background: #0f1422; padding: 20px; font-weight: 700; font-size: 1.2rem; border-bottom: 1px solid rgba(255,205,74,0.2); color: #ffcd4a; }
         .methodic-body { padding: 20px; }
         .btn-download { background: rgba(255,205,74,0.2); color: #ffcd4a; padding: 6px 12px; border-radius: 30px; font-size: 0.8rem; display: inline-block; margin-top: 10px; cursor: pointer; border: none; }
@@ -407,7 +407,7 @@
 <header>
     <div class="header-flex">
         <div class="logo">
-            <img src="logo.png" alt="Логотип Кадетского корпуса">
+            <img src="https://i.ibb.co/MDBXSgqW/2-OWv-SQc4-YKbcq-F00-Q298xd-SDZls-Oq1g-ALDBxj80-YA3ay7dg-VGk1-Nv-Rkx-Qhx-ALVj-P03w-T1-V28c-KLc-HNd-Afhj-C2.jpg" alt="Логотип Кадетского корпуса">
             <p>Кадетский корпус (школа IT‑технологий)</p>
         </div>
         <div class="mobile-menu" id="mobileMenu"><i class="fas fa-bars"></i></div>
@@ -448,6 +448,7 @@
 </header>
 
 <main>
+    <!-- HERO -->
     <section id="home" class="hero">
         <video class="hero-video-bg" autoplay muted loop playsinline poster="https://via.placeholder.com/1920x1080?text=Кадеты">
             <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
@@ -469,6 +470,7 @@
         </div>
     </section>
 
+    <!-- Шторка -->
     <div id="curtain" class="curtain">
         <div class="close-curtain" id="closeCurtain">&times;</div>
         <h3><i class="fas fa-info-circle"></i> Уважаемые родители и абитуриенты!</h3>
@@ -476,6 +478,7 @@
         <button class="btn btn-primary" onclick="document.getElementById('admission').scrollIntoView({behavior:'smooth'}); document.getElementById('curtain').classList.remove('open');">Перейти к поступлению</button>
     </div>
 
+    <!-- Статистика -->
     <section class="stats fade-up">
         <div class="container stats-grid">
             <div class="stat-card"><div class="stat-number">80</div><div class="stat-label">Кадет (10-11 классы)</div></div>
@@ -485,6 +488,7 @@
         </div>
     </section>
 
+    <!-- О кадетском корпусе -->
     <section id="about" class="section fade-up">
         <div class="container">
             <h2 class="section-title">О кадетском корпусе</h2>
@@ -497,7 +501,7 @@
         </div>
     </section>
 
-    <!-- Сведения об ОО -->
+    <!-- Сведения об образовательной организации -->
     <section id="basic-info" class="section bg-light fade-up"><div class="container"><h2 class="section-title">Основные сведения</h2><div class="card"><i class="fas fa-building"></i><h3>Полное наименование</h3><p>Кадетский корпус (школа IT-технологий) Федерального государственного казенного военного образовательного учреждения высшего образования «Военная орденов Жукова и Ленина Краснознаменная академия связи имени Маршала Советского Союза С.М. Буденного» Министерства обороны Российской Федерации</p><p><strong>Сокращённое наименование:</strong> Школа IT-технологий</p><p><strong>Учредитель:</strong> Российская Федерация, Министерство обороны РФ</p><p><strong>Адрес:</strong> 194064, г. Санкт-Петербург, Тихорецкий пр., д. 3</p><p><strong>Режим работы:</strong> круглосуточно</p><p><strong>Телефон:</strong> 8 (812) 247-98-66</p><p><strong>E-mail:</strong> sch-vasit@mil.ru</p><p><strong>Сайт:</strong> itschool.mil.ru</p></div></div></section>
     <section id="history" class="section fade-up"><div class="container"><h2 class="section-title">История</h2><div class="card"><i class="fas fa-history"></i><p>Кадетский корпус (школа IT-технологий) создан в соответствии с решением Министра обороны РФ от 31 октября 2014 года. Открыт 1 сентября 2015 года на базе Военной академии связи им. Маршала Советского Союза С.М. Буденного.</p></div></div></section>
     <section id="structure" class="section bg-light fade-up"><div class="container"><h2 class="section-title">Структура и органы управления</h2><div class="card"><i class="fas fa-sitemap"></i><p>Управление осуществляет начальник Кадетского корпуса. В составе: учебный отдел, воспитательный отдел, педагогический совет, родительский комитет. Структурные подразделения: кафедры академии, лаборатории, медицинский пункт.</p></div></div></section>
@@ -541,7 +545,7 @@
                 <tr><td>Физика</td><td>38</td><td>97,4%</td><td>36</td><td>96</td><td>74,5</td></tr>
                 <tr><td>Информатика</td><td>9</td><td>23,1%</td><td>40</td><td>100</td><td>89,8</td></tr>
                 </tbody></table><div class="table-summary">✔ Выпускников: 39, аттестат получили 100%. С отличием I степени – 20,5%, II степени – 23,1%. 240+ баллов – 45,2%.</div></div>
-                <div class="table-wrapper"><h4>2024 год</h4><td><thead><tr><th scope="col">Предмет</th><th scope="col">Участников</th><th scope="col">%</th><th scope="col">Мин. балл</th><th scope="col">Макс. балл</th><th scope="col">Средний балл</th></tr></thead><tbody>
+                <div class="table-wrapper"><h4>2024 год</h4><table><thead><tr><th scope="col">Предмет</th><th scope="col">Участников</th><th scope="col">%</th><th scope="col">Мин. балл</th><th scope="col">Макс. балл</th><th scope="col">Средний балл</th></tr></thead><tbody>
                 <tr><td>Русский язык</td><td>39</td><td>100%</td><td>36</td><td>97</td><td>81,4</td></tr>
                 <tr><td>Математика (профиль)</td><td>39</td><td>100%</td><td>27</td><td>100</td><td>84,7</td></tr>
                 <tr><td>Физика</td><td>39</td><td>100%</td><td>36</td><td>100</td><td>82,5</td></tr>
@@ -593,7 +597,7 @@
         </div>
     </section>
 
-    <!-- Родителям (ссылки исправлены) -->
+    <!-- Родителям -->
     <section id="parents" class="section fade-up">
         <div class="container">
             <h2 class="section-title">Информация для родителей</h2>
@@ -616,29 +620,28 @@
         </div>
     </section>
 
-    <!-- Карта -->
-    <section class="section bg-light fade-up">
-        <div class="container">
-            <h2 class="section-title">Наш адрес</h2>
-            <div class="map-container" id="map"></div>
-            <p style="text-align: center; margin-top: 20px;">г. Санкт-Петербург, Тихорецкий пр., д. 3</p>
-        </div>
-    </section>
-
-    <!-- Партнёры (только два: Минобороны и ВАС) -->
+    <!-- Партнёры академии -->
     <section class="section fade-up">
         <div class="container">
             <h2 class="section-title">Партнёры академии</h2>
             <div class="partners-grid">
                 <a href="https://mil.ru/" target="_blank" rel="noopener noreferrer" class="partner-logo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Ministry_of_Defense_of_the_Russian_Federation_Logo.svg" alt="Министерство обороны РФ">
+                    <img src="https://i.ibb.co/JRbvnT5H/Middle-emblem-of-the-Ministry-of-Defence-of-the-Russian-Federation-21-07-2003-present-svg.webp" alt="Министерство обороны РФ">
                     <span>Минобороны России</span>
                 </a>
                 <a href="https://xn--80aaghfnfclx0d6jc.xn--p1ai/" target="_blank" rel="noopener noreferrer" class="partner-logo">
-                    <span style="font-size:1.2rem;">🏛️</span>
+                    <img src="https://i.ibb.co/ymSNrgGv/svg.png" alt="Военная академия связи">
                     <span>Военная академия связи</span>
                 </a>
             </div>
+        </div>
+    </section>
+
+    <section class="section bg-light fade-up">
+        <div class="container">
+            <h2 class="section-title">Наш адрес</h2>
+            <div class="map-container" id="map"></div>
+            <p style="text-align: center; margin-top: 20px;">г. Санкт-Петербург, Тихорецкий пр., д. 3</p>
         </div>
     </section>
 
@@ -680,10 +683,12 @@
 <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
 
 <script>
+    // Мобильное меню
     const mobileBtn = document.getElementById('mobileMenu');
     const nav = document.getElementById('navLinks');
     mobileBtn?.addEventListener('click', () => nav.classList.toggle('active'));
 
+    // Плавный скролл
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href').substring(1);
@@ -697,6 +702,7 @@
         });
     });
 
+    // Форма
     const form = document.getElementById('callbackForm');
     form?.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -704,10 +710,12 @@
         form.reset();
     });
 
+    // Демо-скачивание
     document.querySelectorAll('.btn-download').forEach(btn => {
         btn.addEventListener('click', () => alert('Демонстрационная версия материалов. Полный файл можно запросить в учебной части.'));
     });
 
+    // Кнопка наверх
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) backToTop.classList.add('show');
@@ -715,6 +723,7 @@
     });
     backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
+    // Анимация при скролле
     const fadeElements = document.querySelectorAll('.fade-up');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -725,6 +734,7 @@
     }, { threshold: 0.1 });
     fadeElements.forEach(el => observer.observe(el));
 
+    // Таймер
     function updateCountdown() {
         const targetDate = new Date(2026, 7, 1, 23, 59, 59);
         const now = new Date();
@@ -744,7 +754,13 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    ymaps.ready(init);
+    // Карта
+    if (typeof ymaps !== 'undefined') {
+        ymaps.ready(init);
+    } else {
+        const mapDiv = document.getElementById('map');
+        if(mapDiv) mapDiv.innerHTML = '<div style="height:100%; display:flex; align-items:center; justify-content:center; background:#1a1f2e; color:#ffcd4a;">Карта временно недоступна. Проверьте API-ключ.</div>';
+    }
     function init() {
         var myMap = new ymaps.Map("map", {
             center: [60.0176, 30.3839],
@@ -758,6 +774,7 @@
         myMap.geoObjects.add(placemark);
     }
 
+    // 3D tilt
     VanillaTilt.init(document.querySelectorAll('.card, .teacher-card, .parent-card, .methodic-card, .partner-logo'), {
         max: 8,
         speed: 400,
@@ -765,6 +782,7 @@
         "max-glare": 0.2,
     });
 
+    // Шторка
     const curtain = document.getElementById('curtain');
     const openBtn = document.getElementById('openCurtainBtn');
     const closeBtn = document.getElementById('closeCurtain');
