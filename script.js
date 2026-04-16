@@ -1,4 +1,3 @@
-// script.js
 document.addEventListener('DOMContentLoaded', function() {
     // Мобильное меню
     const mobileBtn = document.getElementById('mobileMenu');
@@ -51,14 +50,45 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Анимация при скролле (fade-up)
     const fadeElements = document.querySelectorAll('.fade-up');
-    const observer = new IntersectionObserver((entries) => {
+    const observerFade = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                observerFade.unobserve(entry.target);
             }
         });
     }, { threshold: 0.1 });
-    fadeElements.forEach(el => observer.observe(el));
+    fadeElements.forEach(el => observerFade.observe(el));
+
+    // АНИМАЦИЯ ЦИФР СТАТИСТИКИ
+    const statNumbers = document.querySelectorAll('.stat-number');
+    let animated = false;
+    const observerStats = new IntersectionObserver((entries) => {
+        if (animated) return;
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animated = true;
+                statNumbers.forEach(stat => {
+                    const target = parseInt(stat.innerText, 10);
+                    if (isNaN(target)) return;
+                    let current = 0;
+                    const increment = target / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            stat.innerText = target;
+                            clearInterval(timer);
+                        } else {
+                            stat.innerText = Math.floor(current);
+                        }
+                    }, 20);
+                });
+                observerStats.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    const statsSection = document.querySelector('.stats');
+    if (statsSection) observerStats.observe(statsSection);
 
     // Таймер обратного отсчёта до 1 августа 2026
     function updateCountdown() {
