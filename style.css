@@ -152,7 +152,7 @@ header {
 }
 .dropdown:hover .dropdown-content { display: block; }
 
-/* HERO С ВИДЕО-ФОНОМ */
+/* HERO */
 .hero {
     position: relative;
     min-height: 90vh;
@@ -249,9 +249,9 @@ header {
     transform: translateY(0);
 }
 
-/* КАРТА (увеличенная высота) */
+/* КАРТА */
 .map-container {
-    height: 500px;
+    height: 400px;
     border-radius: 24px;
     overflow: hidden;
     border: 1px solid rgba(255,205,74,0.3);
@@ -262,7 +262,7 @@ header {
     height: 100%;
 }
 
-/* ПАРТНЁРЫ — логотипы видны всегда, при наведении увеличиваются */
+/* ПАРТНЁРЫ */
 .partners-grid {
     display: flex;
     flex-wrap: wrap;
@@ -294,7 +294,6 @@ header {
     max-width: 80px;
     max-height: 60px;
     width: auto;
-    /* убираем фильтр, логотип виден всегда */
     filter: none;
     opacity: 1;
     transition: 0.2s;
@@ -305,7 +304,7 @@ header {
     font-size: 1rem;
 }
 
-/* ОСТАЛЬНЫЕ СТИЛИ (статистика, карточки, таблицы, преподаватели, родителям) */
+/* СТАТИСТИКА, КАРТОЧКИ, ТАБЛИЦЫ, ПРЕПОДАВАТЕЛИ, РОДИТЕЛЯМ */
 .stats { background: #0f1422; padding: 60px 0; }
 .stats-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; text-align: center; }
 .stat-card { flex: 1; min-width: 160px; }
@@ -366,8 +365,6 @@ footer { background: #03060c; padding: 40px 0; text-align: center; border-top: 1
 .curtain .btn { margin-top: 20px; }
 .table-summary { background: rgba(255,205,74,0.1); border-radius: 16px; padding: 12px 16px; margin-top: 15px; font-size: 0.9rem; border-left: 3px solid #ffcd4a; }
 .table-wrapper h4 { color: #ffcd4a; margin: 20px 0 10px 0; font-size: 1.2rem; }
-
-/* Карточка каникул не должна иметь tilt */
 .no-tilt {
     transform: none !important;
 }
